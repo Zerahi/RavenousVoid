@@ -1,0 +1,20 @@
+{
+    "display": {
+        "icon": {
+            "item": "rv:voidaltar"
+        },
+        "title": {
+            "translate": "advancements.voidaltar.title"
+        },
+        "description": {
+            "translate": "advancements.voidaltar.description"
+        },
+        "background": "minecraft:textures/gui/advancements/backgrounds/stone.png"
+    },
+    "parent": "rv:voidorb",
+    "criteria": {
+        "ravvoid": {
+            "trigger": "voidaltar"
+        }
+    }
+}

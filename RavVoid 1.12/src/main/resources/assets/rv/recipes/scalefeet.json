@@ -1,0 +1,26 @@
+{
+	"type": "forge:ore_shaped",
+	
+	"pattern": [
+		"   ",
+		"H H",
+		"HSH"
+	],
+	
+	"key":
+	{
+		"H":
+		{
+			"item": "rv:infusedscales"
+		},
+		"S":
+		{
+			"item": "rv:chaoticessence"
+		}
+	},
+	
+	"result":
+	{
+		"item": "rv:scalefeet"
+	}
+}

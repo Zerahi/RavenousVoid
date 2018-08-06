@@ -1,0 +1,18 @@
+{
+	"__comment": "Designed by Zerahi with BDcraft Cubik PRO 0.95 Beta - http://bdcraft.net",
+	"textures": {
+		"particle": "rv:blocks/voidrift4",
+		"texture": "rv:blocks/voidrift4"
+	},
+	"elements": [ 	 
+		{
+			"from": [ 0, 0, 15 ],
+			"to": [ 16, 16, 15.001 ],
+			"shade": false,
+			"faces": {
+				"north": { "uv": [ 0, 0, 16, 16 ], "texture": "#texture" },
+				"south": { "uv": [ 16, 0, 0, 16 ], "texture": "#texture" }
+			}
+		}
+	]
+}

@@ -1,0 +1,20 @@
+{
+    "display": {
+        "icon": {
+            "item": "rv:voidshard"
+        },
+        "title": {
+            "translate": "advancements.voidshard.title"
+        },
+        "description": {
+            "translate": "advancements.voidshard.description"
+        },
+        "background": "minecraft:textures/gui/advancements/backgrounds/stone.png"
+    },
+    "parent": "rv:voidore",
+    "criteria": {
+        "ravvoid": {
+            "trigger": "voidshard"
+        }
+    }
+}

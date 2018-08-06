@@ -1,0 +1,20 @@
+{
+    "display": {
+        "icon": {
+            "item": "rv:voidrend"
+        },
+        "title": {
+            "translate": "advancements.voidrend.title"
+        },
+        "description": {
+            "translate": "advancements.voidrend.description"
+        },
+        "background": "minecraft:textures/gui/advancements/backgrounds/stone.png"
+    },
+    "parent": "rv:voidaltar",
+    "criteria": {
+        "ravvoid": {
+            "trigger": "voidrend"
+        }
+    }
+}

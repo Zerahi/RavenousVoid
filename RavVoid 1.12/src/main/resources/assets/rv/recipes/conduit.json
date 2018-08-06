@@ -1,0 +1,32 @@
+{
+	"type": "forge:ore_shaped",
+	
+	"pattern": [
+		" P ",
+		"SFS",
+		"S S"
+	],
+	
+	"key":
+	{
+		"F":
+		{
+			"item": "rv:voidfragments"
+		},
+		
+		"P":
+		{
+			"item": "rv:purevoidshard"
+		},
+		
+		"S":
+		{
+			"item": "rv:voidshard"
+		}
+	},
+	
+	"result":
+	{
+		"item": "rv:conduit"
+	}
+}

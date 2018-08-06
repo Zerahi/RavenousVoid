@@ -1,0 +1,16 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "all": "rv:blocks/containedentropybrick"
+        },
+        "model": "cube_all",
+        "particle": "rv:blocks/containedentropybrick",
+        "uvlock": true
+    },
+    "variants": {
+        "normal": [{
+
+        }]
+    }
+}

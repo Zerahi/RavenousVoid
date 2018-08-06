@@ -1,0 +1,20 @@
+{
+    "display": {
+        "icon": {
+            "item": "rv:voidorb"
+        },
+        "title": {
+            "translate": "advancements.voidorb.title"
+        },
+        "description": {
+            "translate": "advancements.voidorb.description"
+        },
+        "background": "minecraft:textures/gui/advancements/backgrounds/stone.png"
+    },
+    "parent": "rv:darkness",
+    "criteria": {
+        "ravvoid": {
+            "trigger": "voidorb"
+        }
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "rv:voidtear1",
+        "uvlock": true
+    },
+    "variants": {
+        "spot=1": { "model": "rv:voidtear1" },
+        "spot=2": { "model": "rv:voidtear2" }
+    }
+}

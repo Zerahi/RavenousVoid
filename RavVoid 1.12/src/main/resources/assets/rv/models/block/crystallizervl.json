@@ -1,0 +1,192 @@
+{
+"__comment": "Designed by Zerahi with BDcraft Cubik PRO 0.95 Beta - http://bdcraft.net",
+"textures": {
+    "particle": "blocks/stone_slab_top",
+    "shardblock": "rv:blocks/shardblock",
+    "altertop": "rv:blocks/altertop",
+    "stone_slab_top": "blocks/stone_slab_top",
+    "stone_andesite_smooth": "blocks/stone_andesite_smooth",
+    "water": "rv:blocks/vlstill"
+},"elements": [ 
+{
+    "from": [ 8.0625, 0, 0.25 ],
+    "to": [ 19.0625, 0.5, 11.25 ],
+    "rotation": { "origin": [ 8.0625, 0, 0.25 ], "axis": "y", "angle": -45 },
+    "faces": {
+        "down":  { "uv": [ 14, 13.75, 2, 2 ], "texture": "#altertop" },
+        "up":    { "uv": [ 2, 2, 14, 13.75 ], "texture": "#altertop" },
+        "north": { "uv": [ 2, 13, 14, 14 ], "texture": "#altertop" },
+        "south": { "uv": [ 2, 13, 14, 14 ], "texture": "#altertop" },
+        "west":  { "uv": [ 2, 13, 14, 14 ], "texture": "#altertop" },
+        "east":  { "uv": [ 2, 13, 14, 14 ], "texture": "#altertop" }
+    }
+},
+{
+    "from": [ 1.5, 0.5, 7 ],
+    "to": [ 3.5, 9.5, 9 ],
+    "faces": {
+        "down":  { "uv": [ 15, 9, 13, 7 ], "texture": "#stone_slab_top" },
+        "up":    { "uv": [ 1, 7, 3, 9 ], "texture": "#stone_slab_top" },
+        "north": { "uv": [ 13, 0, 15, 9.5 ], "texture": "#stone_slab_top" },
+        "south": { "uv": [ 2, 0, 4, 9.5 ], "texture": "#stone_slab_top" },
+        "west":  { "uv": [ 2.25, 0, 4.25, 9.5 ], "texture": "#stone_slab_top" },
+        "east":  { "uv": [ 13, 0, 15, 9.5 ], "texture": "#stone_slab_top" }
+    }
+},
+{
+    "from": [ 12.5, 0.5, 7 ],
+    "to": [ 14.5, 9.5, 9 ],
+    "faces": {
+        "up":    { "uv": [ 1, 7, 3, 9 ], "texture": "#stone_slab_top" },
+        "north": { "uv": [ 13, 0, 15, 9.5 ], "texture": "#stone_slab_top" },
+        "south": { "uv": [ 2, 0, 4, 9.5 ], "texture": "#stone_slab_top" },
+        "west":  { "uv": [ 13, 0, 15, 9.5 ], "texture": "#stone_slab_top" },
+        "east":  { "uv": [ 2.25, 0, 4.25, 9.5 ], "texture": "#stone_slab_top" }
+    }
+},
+{
+    "from": [ 7, 0.5, 1.5 ],
+    "to": [ 9, 9.5, 3.5 ],
+    "faces": {
+        "down":  { "uv": [ 3, 3, 1, 1 ], "texture": "#stone_slab_top" },
+        "up":    { "uv": [ 6, 6, 8, 8 ], "texture": "#stone_slab_top" },
+        "north": { "uv": [ 13, 0, 15, 9.5 ], "texture": "#stone_slab_top" },
+        "south": { "uv": [ 2, 0, 4, 9.5 ], "texture": "#stone_slab_top" },
+        "west":  { "uv": [ 13, 0, 15, 9.5 ], "texture": "#stone_slab_top" },
+        "east":  { "uv": [ 2.25, 0, 4.25, 9.5 ], "texture": "#stone_slab_top" }
+    }
+},
+{
+    "from": [ 7, 0.5, 12.5 ],
+    "to": [ 9, 9.5, 14.5 ],
+    "faces": {
+        "down":  { "uv": [ 15, 9, 13, 7 ], "texture": "#stone_slab_top" },
+        "up":    { "uv": [ 1, 7, 3, 9 ], "texture": "#stone_slab_top" },
+        "north": { "uv": [ 2, 0, 4, 9.5 ], "texture": "#stone_slab_top" },
+        "south": { "uv": [ 13, 0, 15, 9.5 ], "texture": "#stone_slab_top" },
+        "west":  { "uv": [ 13, 0, 15, 9.5 ], "texture": "#stone_slab_top" },
+        "east":  { "uv": [ 2.25, 0, 4.25, 9.5 ], "texture": "#stone_slab_top" }
+    }
+},
+{
+    "from": [ 3.5, 7, 3.5 ],
+    "to": [ 12.5, 12, 4 ],
+    "faces": {
+        "down":  { "uv": [ 12.5, 12.5, 4, 12 ], "texture": "#stone_andesite_smooth" },
+        "up":    { "uv": [ 3.5, 12, 12, 12.5 ], "texture": "#stone_andesite_smooth" },
+        "north": { "uv": [ 6.5, 10.5, 15, 15 ], "texture": "#stone_andesite_smooth" },
+        "south": { "uv": [ 1, 10.5, 9.5, 15 ], "texture": "#stone_andesite_smooth" },
+        "west":  { "uv": [ 12, 3.5, 12.5, 8 ], "texture": "#stone_andesite_smooth" },
+        "east":  { "uv": [ 3.5, 3.5, 4, 8 ], "texture": "#stone_andesite_smooth" }
+    }
+},
+{
+    "from": [ 3.5, 7, 12 ],
+    "to": [ 12.5, 12, 12.5 ],
+    "faces": {
+        "down":  { "uv": [ 12.5, 12.5, 4, 12 ], "texture": "#stone_andesite_smooth" },
+        "up":    { "uv": [ 3.5, 12, 12, 12.5 ], "texture": "#stone_andesite_smooth" },
+        "north": { "uv": [ 6.5, 10.25, 15, 14.75 ], "texture": "#stone_andesite_smooth" },
+        "south": { "uv": [ 1, 10.5, 9.5, 15 ], "texture": "#stone_andesite_smooth" },
+        "west":  { "uv": [ 12, 3.5, 12.5, 8 ], "texture": "#stone_andesite_smooth" },
+        "east":  { "uv": [ 3.5, 3.5, 4, 8 ], "texture": "#stone_andesite_smooth" }
+    }
+},
+{
+    "from": [ 12, 7, 4 ],
+    "to": [ 12.5, 12, 12 ],
+    "faces": {
+        "down":  { "uv": [ 12, 4, 12.5, 12 ], "texture": "#stone_andesite_smooth" },
+        "up":    { "uv": [ 12, 4, 12.5, 12 ], "texture": "#stone_andesite_smooth" },
+        "west":  { "uv": [ 1, 10, 9, 15 ], "texture": "#stone_andesite_smooth" },
+        "east":  { "uv": [ 7, 10, 15, 15 ], "texture": "#stone_andesite_smooth" }
+    }
+},
+{
+    "from": [ 3.5, 7, 4 ],
+    "to": [ 4, 12, 12 ],
+    "faces": {
+        "down":  { "uv": [ 3.5, 4, 4, 12 ], "texture": "#stone_andesite_smooth" },
+        "up":    { "uv": [ 3.5, 4, 4, 12 ], "texture": "#stone_andesite_smooth" },
+        "west":  { "uv": [ 1, 10, 9, 15 ], "texture": "#stone_andesite_smooth" },
+        "east":  { "uv": [ 7, 9.75, 15, 14.75 ], "texture": "#stone_andesite_smooth" }
+    }
+},
+{
+    "from": [ 4, 7, 4 ],
+    "to": [ 12, 7.5, 12 ],
+    "faces": {
+        "down":  { "uv": [ 1, 7, 9, 15 ], "texture": "#stone_andesite_smooth" },
+        "up":    { "uv": [ 1, 7, 9, 15 ], "texture": "#stone_andesite_smooth" }
+    }
+},
+{
+    "from": [ 3.5, 8.5, 7.25 ],
+    "to": [ 4, 11, 8.75 ],
+    "rotation": { "origin": [ 3.5, 11, 7.25 ], "axis": "z", "angle": -45 },
+    "faces": {
+        "down":  { "uv": [ 3.5, 7.25, 4, 8.75 ], "texture": "#shardblock" },
+        "up":    { "uv": [ 3.5, 7.25, 4, 8.75 ], "texture": "#shardblock" },
+        "north": { "uv": [ 3.5, 5, 4, 7.5 ], "texture": "#shardblock" },
+        "south": { "uv": [ 3.5, 5, 4, 7.5 ], "texture": "#shardblock" },
+        "west":  { "uv": [ 7.25, 5, 8.75, 7.5 ], "texture": "#shardblock" },
+        "east":  { "uv": [ 7.25, 5, 8.75, 7.5 ], "texture": "#shardblock" }
+    }
+},
+{
+    "from": [ 12, 8.25, 7.25 ],
+    "to": [ 12.5, 10.75, 8.75 ],
+    "rotation": { "origin": [ 12, 10.75, 7.25 ], "axis": "z", "angle": 45 },
+    "faces": {
+        "down":  { "uv": [ 12, 7.25, 12.5, 8.75 ], "texture": "#shardblock" },
+        "up":    { "uv": [ 12, 7.25, 12.5, 8.75 ], "texture": "#shardblock" },
+        "north": { "uv": [ 12, 5.25, 12.5, 7.75 ], "texture": "#shardblock" },
+        "south": { "uv": [ 12, 5.25, 12.5, 7.75 ], "texture": "#shardblock" },
+        "west":  { "uv": [ 7.25, 5.25, 8.75, 7.75 ], "texture": "#shardblock" },
+        "east":  { "uv": [ 7.25, 5.25, 8.75, 7.75 ], "texture": "#shardblock" }
+    }
+},
+{
+    "from": [ 7.25, 8.5, 3.5 ],
+    "to": [ 8.75, 11, 4 ],
+    "rotation": { "origin": [ 7.25, 11, 3.5 ], "axis": "x", "angle": 45 },
+    "faces": {
+        "down":  { "uv": [ 7.25, 3.5, 8.75, 4 ], "texture": "#shardblock" },
+        "up":    { "uv": [ 7.25, 3.5, 8.75, 4 ], "texture": "#shardblock" },
+        "north": { "uv": [ 7.25, 5, 8.75, 7.5 ], "texture": "#shardblock" },
+        "south": { "uv": [ 7.25, 5, 8.75, 7.5 ], "texture": "#shardblock" },
+        "west":  { "uv": [ 3.5, 5, 4, 7.5 ], "texture": "#shardblock" },
+        "east":  { "uv": [ 3.5, 5, 4, 7.5 ], "texture": "#shardblock" }
+    }
+},
+{
+    "from": [ 7.25, 8.25, 12 ],
+    "to": [ 8.75, 10.75, 12.5 ],
+    "rotation": { "origin": [ 7.25, 10.75, 12 ], "axis": "x", "angle": -45 },
+    "faces": {
+        "down":  { "uv": [ 7.25, 12, 8.75, 12.5 ], "texture": "#shardblock" },
+        "up":    { "uv": [ 7.25, 12, 8.75, 12.5 ], "texture": "#shardblock" },
+        "north": { "uv": [ 7.25, 5.25, 8.75, 7.75 ], "texture": "#shardblock" },
+        "south": { "uv": [ 7.25, 5.25, 8.75, 7.75 ], "texture": "#shardblock" },
+        "west":  { "uv": [ 12, 5.25, 12.5, 7.75 ], "texture": "#shardblock" },
+        "east":  { "uv": [ 12, 5.25, 12.5, 7.75 ], "texture": "#shardblock" }
+    }
+},
+{
+    "from": [ 4, 11.1875, 4 ],
+    "to": [ 12, 11.25, 12 ],
+    "shade": false,
+    "faces": {
+        "down":  { "uv": [ 0, 0, 1, 1 ], "texture": "#water" },
+        "up":    { "uv": [ 0, 0, 16, 16 ], "texture": "#water" }
+    }
+}
+],
+"display": {
+    "gui": {
+        "rotation": [ 10, 85, 50 ],
+        "translation": [ 0, 1, 0 ],
+        "scale": [ 1, 1, 1 ]
+    }
+}
+}

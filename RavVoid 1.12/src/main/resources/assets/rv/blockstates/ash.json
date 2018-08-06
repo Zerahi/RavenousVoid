@@ -1,0 +1,16 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "all": "rv:blocks/ash"
+        },
+        "model": "cube_all",
+        "particle": "rv:blocks/ash",
+        "uvlock": true
+    },
+    "variants": {
+        "normal": [{
+
+        }]
+    }
+}

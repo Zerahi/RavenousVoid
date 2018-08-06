@@ -1,0 +1,20 @@
+{
+    "display": {
+        "icon": {
+            "item": "rv:voidfragments"
+        },
+        "title": {
+            "translate": "advancements.voidfragments.title"
+        },
+        "description": {
+            "translate": "advancements.voidfragments.description"
+        },
+        "background": "minecraft:textures/gui/advancements/backgrounds/stone.png"
+    },
+    "parent": "rv:voidshard",
+    "criteria": {
+        "ravvoid": {
+            "trigger": "voidfragments"
+        }
+    }
+}

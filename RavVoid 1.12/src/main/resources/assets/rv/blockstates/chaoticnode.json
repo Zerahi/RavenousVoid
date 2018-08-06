@@ -1,0 +1,12 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "rv:chaoticnode",
+        "uvlock": true
+    },
+    "variants": {
+        "normal": [{
+
+        }]
+    }
+}

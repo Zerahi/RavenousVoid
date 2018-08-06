@@ -1,0 +1,13 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "rv:shardblock",
+        "uvlock": true
+    },
+    "variants": {
+        "facing=north": { "model": "rv:shardblock" },
+        "facing=south": { "model": "rv:shardblock", "y": 180 },
+        "facing=west":  { "model": "rv:shardblock", "y": 270 },
+        "facing=east":  { "model": "rv:shardblock", "y": 90 }
+    }
+}

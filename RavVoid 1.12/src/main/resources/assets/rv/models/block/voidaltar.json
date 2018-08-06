@@ -1,0 +1,217 @@
+{
+"__comment": "Designed by Zerahi with BDcraft Cubik PRO 0.96 Beta - http://bdcraft.net",
+"textures":{"particle":"rv:blocks/altertop","wood":"rv:blocks/planks_big_oak","altertop":"rv:blocks/altertop","shardblock":"rv:blocks/shardblock","pileblock":"rv:blocks/pileblock"},
+
+"elements": [ 
+{
+    "from": [ 3.53921, 0, 2.1875 ],
+    "to": [ 5.53921, 12, 4.1875 ],
+    "rotation": { "origin": [ 3.53921, 0, 2.1875 ], "axis": "y", "angle": -45 },
+    "faces": {
+        "down":  { "uv": [ 14, 13, 16, 15 ], "texture": "#wood", "cullface": "down" },
+        "north": { "uv": [ 14, 16, 16, 4 ], "texture": "#wood" },
+        "south": { "uv": [ 14, 16, 16, 4 ], "texture": "#wood" },
+        "west":  { "uv": [ 14, 16, 16, 4 ], "texture": "#wood" },
+        "east":  { "uv": [ 14, 16, 16, 4 ], "texture": "#wood" }
+    }
+},
+{
+    "from": [ 2, 12, 2 ],
+    "to": [ 14, 13, 14 ],
+    "faces": {
+        "down":  { "uv": [ 14, 14, 2, 2 ], "texture": "#altertop" },
+        "up":    { "uv": [ 2, 2, 14, 14 ], "texture": "#altertop" },
+        "north": { "uv": [ 2, 2, 14, 3 ], "texture": "#altertop" },
+        "south": { "uv": [ 2, 2, 14, 3 ], "texture": "#altertop" },
+        "west":  { "uv": [ 2, 2, 14, 3 ], "texture": "#altertop" },
+        "east":  { "uv": [ 2, 2, 14, 3 ], "texture": "#altertop" }
+    }
+},
+{
+    "from": [ 3, 13, 3 ],
+    "to": [ 13, 13.5, 13 ],
+    "faces": {
+        "up":    { "uv": [ 3, 3, 13, 13 ], "texture": "#altertop" },
+        "north": { "uv": [ 3, 3, 13, 4 ], "texture": "#altertop" },
+        "south": { "uv": [ 3, 3, 13, 4 ], "texture": "#altertop" },
+        "west":  { "uv": [ 3, 3, 13, 4 ], "texture": "#altertop" },
+        "east":  { "uv": [ 3, 3, 13, 4 ], "texture": "#altertop" }
+    }
+},
+{
+    "__comment": "leg 1",
+    "from": [ 12.4767, 0, 2.1875 ],
+    "to": [ 14.4767, 12, 4.1875 ],
+    "rotation": { "origin": [ 12.4767, 0, 2.1875 ], "axis": "y", "angle": -45 },
+    "faces": {
+        "down":  { "uv": [ 16, 15, 14, 13 ], "texture": "#wood", "cullface": "down" },
+        "north": { "uv": [ 14, 16, 16, 4 ], "texture": "#wood" },
+        "south": { "uv": [ 14, 16, 16, 4 ], "texture": "#wood" },
+        "west":  { "uv": [ 14, 16, 16, 4 ], "texture": "#wood" },
+        "east":  { "uv": [ 14, 16, 16, 4 ], "texture": "#wood" }
+    }
+},
+{
+    "from": [ 12.4375, 0, 11.0625 ],
+    "to": [ 14.4375, 12, 13.0625 ],
+    "rotation": { "origin": [ 12.4375, 0, 11.0625 ], "axis": "y", "angle": -45 },
+    "faces": {
+        "down":  { "uv": [ 16, 15, 14, 13 ], "texture": "#wood", "cullface": "down" },
+        "north": { "uv": [ 14, 16, 16, 4 ], "texture": "#wood" },
+        "south": { "uv": [ 14, 16, 16, 4 ], "texture": "#wood" },
+        "west":  { "uv": [ 14, 16, 16, 4 ], "rotation": 180, "texture": "#wood" },
+        "east":  { "uv": [ 14, 16, 16, 4 ], "texture": "#wood" }
+    }
+},
+{
+    "from": [ 3.60171, 0, 11 ],
+    "to": [ 5.60171, 12, 13 ],
+    "rotation": { "origin": [ 3.60171, 0, 11 ], "axis": "y", "angle": -45 },
+    "faces": {
+        "down":  { "uv": [ 14, 13, 16, 15 ], "texture": "#wood", "cullface": "down" },
+        "north": { "uv": [ 14, 16, 16, 4 ], "texture": "#wood" },
+        "south": { "uv": [ 14, 16, 16, 4 ], "texture": "#wood" },
+        "west":  { "uv": [ 14, 16, 16, 4 ], "texture": "#wood" },
+        "east":  { "uv": [ 14, 16, 16, 4 ], "texture": "#wood" }
+    }
+},
+{
+    "from": [ 9.3125, 11, 7.4375 ],
+    "to": [ 10.3125, 15, 8.4375 ],
+    "rotation": { "origin": [ 9.3125, 15, 7.4375 ], "axis": "z", "angle": 45 },
+    "faces": {
+        "down":  { "uv": [ 9, 2, 8, 3 ], "texture": "#shardblock" },
+        "up":    { "uv": [ 8, 1, 9, 2 ], "texture": "#shardblock" },
+        "north": { "uv": [ 14, 11, 15, 15 ], "texture": "#shardblock" },
+        "south": { "uv": [ 8, 1, 9, 5 ], "texture": "#shardblock" },
+        "west":  { "uv": [ 8, 1, 9, 5 ], "texture": "#shardblock" },
+        "east":  { "uv": [ 8, 1, 9, 5 ], "texture": "#shardblock" }
+    }
+},
+{
+    "from": [ 6, 11.6875, 7.4375 ],
+    "to": [ 7, 15.6875, 8.4375 ],
+    "rotation": { "origin": [ 6, 15.6875, 7.4375 ], "axis": "z", "angle": -45 },
+    "faces": {
+        "down":  { "uv": [ 9, 2, 8, 3 ], "texture": "#shardblock" },
+        "up":    { "uv": [ 8, 1, 9, 2 ], "texture": "#shardblock" },
+        "north": { "uv": [ 14, 11, 15, 15 ], "texture": "#shardblock" },
+        "south": { "uv": [ 8, 1, 9, 5 ], "texture": "#shardblock" },
+        "west":  { "uv": [ 8, 1, 9, 5 ], "texture": "#shardblock" },
+        "east":  { "uv": [ 8, 1, 9, 5 ], "texture": "#shardblock" }
+    }
+},
+{
+    "from": [ 7.5, 11.625, 5.9375 ],
+    "to": [ 8.5, 15.625, 6.9375 ],
+    "rotation": { "origin": [ 7.5, 15.625, 5.9375 ], "axis": "x", "angle": 45 },
+    "faces": {
+        "down":  { "uv": [ 9, 2, 8, 3 ], "texture": "#shardblock" },
+        "up":    { "uv": [ 8, 1, 9, 2 ], "texture": "#shardblock" },
+        "north": { "uv": [ 14, 11, 15, 15 ], "texture": "#shardblock" },
+        "south": { "uv": [ 8, 1, 9, 5 ], "texture": "#shardblock" },
+        "west":  { "uv": [ 8, 1, 9, 5 ], "texture": "#shardblock" },
+        "east":  { "uv": [ 8, 1, 9, 5 ], "texture": "#shardblock" }
+    }
+},
+{
+    "from": [ 7.5, 10.9375, 9.25 ],
+    "to": [ 8.5, 14.9375, 10.25 ],
+    "rotation": { "origin": [ 7.5, 14.9375, 9.25 ], "axis": "x", "angle": -45 },
+    "faces": {
+        "down":  { "uv": [ 9, 2, 8, 3 ], "texture": "#shardblock" },
+        "up":    { "uv": [ 8, 1, 9, 2 ], "texture": "#shardblock" },
+        "north": { "uv": [ 14, 11, 15, 15 ], "texture": "#shardblock" },
+        "south": { "uv": [ 8, 1, 9, 5 ], "texture": "#shardblock" },
+        "west":  { "uv": [ 8, 1, 9, 5 ], "texture": "#shardblock" },
+        "east":  { "uv": [ 8, 1, 9, 5 ], "texture": "#shardblock" }
+    }
+},
+{
+    "from": [ 3.5, 8.5, 3 ],
+    "to": [ 12.5, 9.5, 4 ],
+    "rotation": { "origin": [ 3.5, 9.5, 3 ], "axis": "x", "angle": 45 },
+    "faces": {
+        "down":  { "uv": [ 7, 4, 8, 13 ], "texture": "#shardblock" },
+        "up":    { "uv": [ 7, 4, 8, 13 ], "texture": "#shardblock" },
+        "north": { "uv": [ 7, 4, 8, 13 ], "texture": "#shardblock" },
+        "south": { "uv": [ 7, 13, 8, 4 ], "texture": "#shardblock" },
+        "west":  { "uv": [ 4, 12, 13, 13 ], "texture": "#shardblock" }
+    }
+},
+{
+    "from": [ 3.5, 8.5, 13 ],
+    "to": [ 12.5, 9.5, 14 ],
+    "rotation": { "origin": [ 3.5, 9.5, 13 ], "axis": "x", "angle": 45 },
+    "faces": {
+        "down":  { "uv": [ 7, 4, 8, 13 ], "texture": "#shardblock" },
+        "up":    { "uv": [ 7, 4, 8, 13 ], "texture": "#shardblock" },
+        "north": { "uv": [ 7, 4, 8, 13 ], "texture": "#shardblock" },
+        "south": { "uv": [ 7, 13, 8, 4 ], "texture": "#shardblock" },
+        "west":  { "uv": [ 4, 12, 13, 13 ], "texture": "#shardblock" },
+        "east":  { "uv": [ 4, 12, 13, 13 ], "texture": "#shardblock" }
+    }
+},
+{
+    "from": [ 3, 8.5, 3.5 ],
+    "to": [ 4, 9.5, 12.5 ],
+    "rotation": { "origin": [ 3, 9.5, 3.5 ], "axis": "z", "angle": -45 },
+    "faces": {
+        "down":  { "uv": [ 7, 4, 8, 13 ], "texture": "#shardblock" },
+        "up":    { "uv": [ 7, 4, 8, 13 ], "texture": "#shardblock" },
+        "north": { "uv": [ 12.9375, 6.5, 13.9375, 7.5 ], "texture": "#shardblock" },
+        "south": { "uv": [ 12.9375, 6.5, 13.9375, 7.5 ], "texture": "#shardblock" },
+        "west":  { "uv": [ 4, 12, 13, 13 ], "texture": "#shardblock" },
+        "east":  { "uv": [ 4, 12, 13, 13 ], "texture": "#shardblock" }
+    }
+},
+{
+    "from": [ 12.9571, 8.5, 3.5 ],
+    "to": [ 13.9571, 9.5, 12.5 ],
+    "rotation": { "origin": [ 12.9571, 9.5, 3.5 ], "axis": "z", "angle": -45 },
+    "faces": {
+        "down":  { "uv": [ 7, 4, 8, 13 ], "texture": "#shardblock" },
+        "up":    { "uv": [ 7, 4, 8, 13 ], "texture": "#shardblock" },
+        "north": { "uv": [ 12.9375, 6.5, 13.9375, 7.5 ], "texture": "#shardblock" },
+        "south": { "uv": [ 12.9375, 6.5, 13.9375, 7.5 ], "texture": "#shardblock" },
+        "west":  { "uv": [ 4, 12, 13, 13 ], "texture": "#shardblock" },
+        "east":  { "uv": [ 4, 12, 13, 13 ], "texture": "#shardblock" }
+    }
+},
+{
+    "from": [ 6, 12, 8 ],
+    "to": [ 10, 15, 11 ],
+    "shade": false,
+    "rotation": { "origin": [ 6, 15, 8 ], "axis": "x", "angle": 45 },
+    "faces": {
+        "down":  { "uv": [ 6, 6, 10, 10 ], "texture": "#pileblock" },
+        "up":    { "uv": [ 6, 6, 10, 10 ], "texture": "#pileblock" },
+        "north": { "uv": [ 6, 6, 10, 10 ], "texture": "#pileblock" },
+        "south": { "uv": [ 6, 6, 10, 10 ], "texture": "#pileblock" },
+        "west":  { "uv": [ 6, 6, 10, 10 ], "texture": "#pileblock" },
+        "east":  { "uv": [ 6, 6, 10, 10 ], "texture": "#pileblock" }
+    }
+},
+{
+    "from": [ 8, 12, 6 ],
+    "to": [ 11, 15, 10 ],
+    "shade": false,
+    "rotation": { "origin": [ 8, 15, 6 ], "axis": "z", "angle": -45 },
+    "faces": {
+        "down":  { "uv": [ 6, 6, 10, 10 ], "texture": "#pileblock" },
+        "up":    { "uv": [ 6, 6, 10, 10 ], "texture": "#pileblock" },
+        "north": { "uv": [ 6, 6, 10, 10 ], "texture": "#pileblock" },
+        "south": { "uv": [ 6, 6, 10, 10 ], "texture": "#pileblock" },
+        "west":  { "uv": [ 6, 6, 10, 10 ], "texture": "#pileblock" },
+        "east":  { "uv": [ 6, 6, 10, 10 ], "texture": "#pileblock" }
+    }
+}
+],
+"display": {
+    "gui": {
+        "rotation": [ 10, 85, 50 ],
+        "translation": [ 0, 1, 0 ],
+        "scale": [ 1, 1, 1 ]
+    }
+}
+}

@@ -1,0 +1,26 @@
+{
+	"type": "forge:ore_shaped",
+	
+	"pattern": [
+		"HSH",
+		"HHH",
+		"HHH"
+	],
+	
+	"key":
+	{
+		"H":
+		{
+			"item": "rv:beasthide"
+		},
+		"S":
+		{
+			"item": "rv:spirit"
+		}
+	},
+	
+	"result":
+	{
+		"item": "rv:hidechest"
+	}
+}

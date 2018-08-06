@@ -1,0 +1,13 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "rv:crystalizerwater",
+        "uvlock": true
+    },
+    "variants": {
+        "liquid=0": { "model": "rv:crystallizer" },
+        "liquid=1": { "model": "rv:crystallizerwater" },
+        "liquid=2": { "model": "rv:crystallizervl" },
+        "liquid=3": { "model": "rv:crystallizersvl" }
+    }
+}

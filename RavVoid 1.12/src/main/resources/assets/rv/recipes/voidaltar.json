@@ -1,0 +1,38 @@
+{
+	"type": "forge:ore_shaped",
+	
+	"pattern": [
+		"FPF",
+		"SWS",
+		"W W"
+	],
+	
+	"key":
+	{
+		"F":
+		{
+			"item": "rv:voidfragments"
+		},
+		
+		"P":
+		{
+			"item": "rv:fragmentpile"
+		},
+		
+		"S":
+		{
+			"item": "rv:voidshard"
+		},
+		
+		"W":
+		{
+		      "type": "forge:ore_dict",
+		      "ore": "plankWood"
+		}
+	},
+	
+	"result":
+	{
+		"item": "rv:voidaltar"
+	}
+}

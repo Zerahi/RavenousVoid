@@ -1,0 +1,20 @@
+{
+    "display": {
+        "icon": {
+            "item": "rv:ash"
+        },
+        "title": {
+            "translate": "advancements.through.title"
+        },
+        "description": {
+            "translate": "advancements.through.description"
+        },
+        "background": "minecraft:textures/gui/advancements/backgrounds/stone.png"
+    },
+    "parent": "rv:voidrift",
+    "criteria": {
+        "ravvoid": {
+            "trigger": "through"
+        }
+    }
+}

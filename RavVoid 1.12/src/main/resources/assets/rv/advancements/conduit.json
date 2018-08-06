@@ -1,0 +1,20 @@
+{
+    "display": {
+        "icon": {
+            "item": "rv:conduit"
+        },
+        "title": {
+            "translate": "advancements.conduit.title"
+        },
+        "description": {
+            "translate": "advancements.conduit.description"
+        },
+        "background": "minecraft:textures/gui/advancements/backgrounds/stone.png"
+    },
+    "parent": "rv:purevoidshard",
+    "criteria": {
+        "ravvoid": {
+            "trigger": "conduit"
+        }
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "display": {
+        "icon": {
+            "item": "rv:crystallizer"
+        },
+        "title": {
+            "translate": "advancements.crystallizer.title"
+        },
+        "description": {
+            "translate": "advancements.crystallizer.description"
+        },
+        "background": "minecraft:textures/gui/advancements/backgrounds/stone.png"
+    },
+    "parent": "rv:shade",
+    "criteria": {
+        "ravvoid": {
+            "trigger": "crystallizer"
+        }
+    }
+}

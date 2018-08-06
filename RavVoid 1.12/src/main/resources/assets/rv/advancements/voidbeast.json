@@ -1,0 +1,20 @@
+{
+    "display": {
+        "icon": {
+            "item": "rv:beasthide"
+        },
+        "title": {
+            "translate": "advancements.voidbeast.title"
+        },
+        "description": {
+            "translate": "advancements.voidbeast.description"
+        },
+        "background": "minecraft:textures/gui/advancements/backgrounds/stone.png"
+    },
+    "parent": "rv:voidrend",
+    "criteria": {
+        "ravvoid": {
+            "trigger": "voidbeast"
+        }
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "display": {
+        "icon": {
+            "item": "rv:spirit"
+        },
+        "title": {
+            "translate": "advancements.shade.title"
+        },
+        "description": {
+            "translate": "advancements.shade.description"
+        },
+        "background": "minecraft:textures/gui/advancements/backgrounds/stone.png"
+    },
+    "parent": "rv:voidrend",
+    "criteria": {
+        "ravvoid": {
+            "trigger": "shade"
+        }
+    }
+}

@@ -1,0 +1,16 @@
+[
+{
+  "modid": "rv",
+  "name": "Ravenous Void",
+  "description": "Power over the void.",
+  "version": "0.0.1",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Zerahi"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

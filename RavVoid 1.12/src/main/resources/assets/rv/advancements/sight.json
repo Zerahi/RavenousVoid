@@ -1,0 +1,20 @@
+{
+    "display": {
+        "icon": {
+            "item": "rv:awakenedvoidorb"
+        },
+        "title": {
+            "translate": "advancements.sight.title"
+        },
+        "description": {
+            "translate": "advancements.sight.description"
+        },
+        "background": "minecraft:textures/gui/advancements/backgrounds/stone.png"
+    },
+    "parent": "rv:awakenedvoidorb",
+    "criteria": {
+        "ravvoid": {
+            "trigger": "sight"
+        }
+    }
+}

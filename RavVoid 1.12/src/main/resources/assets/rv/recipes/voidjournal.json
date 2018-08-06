@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:book",
+      "data": 0
+    },
+	{
+      "item": "rv:voidshard",
+      "data": 0
+    }
+  ],
+  "result": {
+    "item": "rv:voidjournal",
+    "count": 1
+  }
+}

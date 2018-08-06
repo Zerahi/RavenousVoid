@@ -1,0 +1,20 @@
+{
+    "display": {
+        "icon": {
+            "item": "rv:pileblock"
+        },
+        "title": {
+            "translate": "advancements.darkness.title"
+        },
+        "description": {
+            "translate": "advancements.darkness.description"
+        },
+        "background": "minecraft:textures/gui/advancements/backgrounds/stone.png"
+    },
+    "parent": "rv:fragmentpile",
+    "criteria": {
+        "ravvoid": {
+            "trigger": "darkness"
+        }
+    }
+}

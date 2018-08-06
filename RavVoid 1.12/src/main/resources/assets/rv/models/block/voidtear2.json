@@ -1,0 +1,18 @@
+{
+	"__comment": "Designed by Zerahi with Cubik Studio - https://cubik.studio",
+	"textures": {
+		"particle": "rv:blocks/voidtear2",
+		"texture": "rv:blocks/voidtear2"
+	},
+	"elements": [ 	 
+		{
+			"__comment": "PlaneZ1",
+			"from": [ 2, 0, 8 ],
+			"to": [ 14, 16, 8.001 ],
+			"faces": {
+				"north": { "uv": [ 2, 0, 14, 16 ], "texture": "#texture" },
+				"south": { "uv": [ 14, 0, 2, 16 ], "texture": "#texture" }
+			}
+		}
+	]
+}

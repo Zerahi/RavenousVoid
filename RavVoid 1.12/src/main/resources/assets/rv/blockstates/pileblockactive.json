@@ -1,0 +1,20 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "rv:pileblock",
+        "uvlock": true
+    },
+    "variants": {
+        "active=0": { "model": "rv:pileblock" },
+        "active=1": { "model": "rv:pileblock" },
+        "active=2": { "model": "rv:pileblock" },
+        "active=3": { "model": "rv:pileblock" },
+        "active=4": { "model": "rv:pileblock" },
+        "active=5": { "model": "rv:pileblock" },
+        "active=6": { "model": "rv:pileblock" },
+        "active=7": { "model": "rv:pileblock" },
+        "active=8": { "model": "rv:pileblock" },
+        "active=9": { "model": "rv:pileblock" },
+        "active=10": { "model": "rv:pileblock" }
+    }
+}

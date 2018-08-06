@@ -1,0 +1,34 @@
+{
+	"type": "forge:ore_shaped",
+	
+	"pattern": [
+		"STS",
+		"T T",
+		"TWT"
+	],
+	
+	"key":
+	{
+		"T":
+		{
+		      "type": "forge:ore_dict",
+		      "ore": "stone"
+		},
+		
+		"S":
+		{
+			"item": "rv:voidshard"
+		},
+		
+		"W":
+		{
+		      "type": "forge:ore_dict",
+		      "ore": "plankWood"
+		}
+	},
+	
+	"result":
+	{
+		"item": "rv:crystallizer"
+	}
+}

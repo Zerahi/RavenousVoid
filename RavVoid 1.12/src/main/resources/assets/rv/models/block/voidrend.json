@@ -1,0 +1,27 @@
+{
+	"__comment": "Designed by Zerahi with BDcraft Cubik PRO 0.95 Beta - http://bdcraft.net",
+	"textures": {
+		"particle": "rv:blocks/voidrend",
+		"texture": "rv:blocks/voidrend"
+	},
+	"elements": [ 	 
+		{
+			"from": [ 0, 15, 0 ],
+			"to": [ 16, 16, 16 ],
+			"faces": {
+				"down": { "uv": [ 0, 16, 16, 0 ], "texture": "#texture" },
+				"up": { "uv": [ 0, 0, 1, 1 ], "texture": "#texture" },
+				"north": { "uv": [ 0, 0, 1, 1 ], "texture": "#texture" },
+				"south": { "uv": [ 0, 0, 1, 1 ], "texture": "#texture" },
+				"west": { "uv": [ 0, 0, 1, 1 ], "texture": "#texture" },
+				"east": { "uv": [ 0, 0, 1, 1 ], "texture": "#texture" }
+			}
+		}
+	],
+	"display": {
+		"gui": {
+			"rotation":  [ -30, 0, 0 ],
+			"translation":  [ 0, -2.086, 0 ]
+		}
+	}
+}

@@ -1,0 +1,12 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "rv:voidnode",
+        "uvlock": true
+    },
+    "variants": {
+        "normal": [{
+
+        }]
+    }
+}

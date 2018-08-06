@@ -1,0 +1,19 @@
+{
+    "display": {
+        "icon": {
+            "item": "rv:awakenedvoidorb"
+        },
+        "title": {
+            "translate": "advancements.ravvoid.title"
+        },
+        "description": {
+            "translate": "advancements.ravvoid.description"
+        },
+        "background": "minecraft:textures/gui/advancements/backgrounds/stone.png"
+    },
+    "criteria": {
+        "ravvoid": {
+            "trigger": "ravvoid"
+        }
+    }
+}

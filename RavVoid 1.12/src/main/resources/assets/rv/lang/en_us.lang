@@ -1,0 +1,94 @@
+//Items
+item.voidshard.name=Void Shard
+item.voidorb.name=Void Orb
+item.voidfragments.name=Void Fragments
+item.fragmentpile.name=Fragment Pile
+item.beasthide.name=Beast Hide
+item.spirit.name=Spirit Fragment
+item.voidessence.name=Void Essence
+item.purevoidshard.name=Pure Void Shard
+item.awakenedvoidorb.name=Awakened Void Orb
+item.hidehelm.name=Hide Helm
+item.hidefeet.name=Hide Boots
+item.hidelegs.name=Hide Leggings
+item.hidechest.name=Hide Chest
+item.unboundchaos.name=Unbound Chaos
+item.voidjournal.name=Void Journal
+item.devourerscales.name=Devourer Scales
+item.infusedscales.name=Infused Scales
+item.chaoticessence.name=Chaotic Essence
+item.chaoticheart.name=Chaotic Heart
+item.ravenousvoidorb.name=Ravenous Void Orb
+item.scalehelm.name=Scale Helm
+item.scalefeet.name=Scale Boots
+item.scalelegs.name=Scale Leggings
+item.scalechest.name=Scale Chest
+
+//Blocks
+tile.voidore.name=Void Shard Ore
+tile.shardblock.name=Void Shard
+tile.pureshardblock.name=Pure Void Shard
+tile.voidpile.name=Void Fragment Pile
+tile.voidaltar.name=Void Altar
+tile.crystallizer.name=Crystallizer
+tile.conduit.name=Conduit
+tile.pileblock.name=Void Fragment Pile
+tile.pileblockactive.name=Void Fragment Pile
+tile.ash.name=Ash
+tile.voidstone.name=Void Stone
+tile.voidrend.name=Void Rend
+tile.voidrift.name=Void Rift
+tile.voidtear.name=Void Tear
+tile.chaoticnode.name=Chaotic Node
+tile.voidnode.name=Void Node
+tile.containedentropy.name=Contained Entropy
+tile.containedentropystep.name=Contained Entropy Steps
+tile.containedentropyslab.name=Contained Entropy Slab
+tile.containedentropybrick.name=Contained Entropy Brick
+tile.containedentropydoubleslab.name=Contained Entropy Double Slab
+
+
+//Entity
+entity.voidbeast.name=Void Beast
+entity.shade.name=Shade
+entity.forgedchaos.name=Forged Chaos
+entity.devourer.name=Devourer
+
+//Tab
+itemGroup.tabVoid=Ravenous Void
+
+//Advancements
+advancements.ravvoid.title=Ravenous Void
+advancements.ravvoid.description=Power over the Void.
+advancements.voidore.title=Void Ore
+advancements.voidore.description=Mined some Void Ore.
+advancements.voidshard.title=Void Shard
+advancements.voidshard.description=Place Void Shard in the world.
+advancements.voidfragments.title=Void Fragments
+advancements.voidfragments.description=Shatter Void Shard
+advancements.fragmentpile.title=Fragment Pile
+advancements.fragmentpile.description=Craft a Fragment Pile.
+advancements.darkness.title=Darkness
+advancements.darkness.description=Place fragment pile on a surface in a dark place and wait.
+advancements.voidorb.title=Void Orb
+advancements.voidorb.description=Obtain Void Orb.
+advancements.voidaltar.title=Void Altar
+advancements.voidaltar.description=Craft and place a Void Altar.
+advancements.voidrend.title=Void Rend
+advancements.voidrend.description=Tear a Rend in Reality.
+advancements.voidbeast.title=Void Beast
+advancements.voidbeast.description=Lure a void beast.
+advancements.shade.title=Shade
+advancements.shade.description=Lure a void shade.
+advancements.crystallizer.title=Crystallizer
+advancements.crystallizer.description=Craft and place a Crystallizer.
+advancements.purevoidshard.title=Pure Void Shard
+advancements.purevoidshard.description=Purify a Void Shard.
+advancements.awakenedvoidorb.title=Awakened Void Orb
+advancements.awakenedvoidorb.description=Awaken the Void Orb.
+advancements.conduit.title=Conduit
+advancements.conduit.description=Craft and place a Conduit.
+advancements.sight.title=Sight
+advancements.sight.description=Activate the Awakened Void Orb.
+advancements.voidrift.title=Void Rift
+advancements.voidrift.description=Open the Rift.
