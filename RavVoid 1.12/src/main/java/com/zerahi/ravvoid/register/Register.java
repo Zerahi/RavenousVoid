@@ -6,6 +6,7 @@ import com.zerahi.ravvoid.blocks.tileentity.TileEntityChaoticNode;
 import com.zerahi.ravvoid.blocks.tileentity.TileEntityConduit;
 import com.zerahi.ravvoid.blocks.tileentity.TileEntityCrystallizer;
 import com.zerahi.ravvoid.blocks.tileentity.TileEntityPile;
+import com.zerahi.ravvoid.blocks.tileentity.TileEntityRift;
 import com.zerahi.ravvoid.blocks.tileentity.TileEntityVoidNode;
 import com.zerahi.ravvoid.network.BookGuiPacket;
 import com.zerahi.ravvoid.utils.EventHandler;
@@ -59,6 +60,7 @@ public class Register {
 		BiomeDictionary.addTypes(VoidBiomeRegistery.VOIDBIOME, Type.DEAD, Type.SPOOKY, Type.VOID);
 	}
 
+	@SuppressWarnings("deprecation")
 	public static void preInit() {
 		GameRegistry.registerTileEntity(TileEntityPile.class, "tileentitypile");
 		GameRegistry.registerTileEntity(TileEntityAltar.class, "tileentityaltar");
@@ -66,6 +68,7 @@ public class Register {
 		GameRegistry.registerTileEntity(TileEntityConduit.class, "tileentityconduit");
 		GameRegistry.registerTileEntity(TileEntityChaoticNode.class, "tileentitychaoticnode");
 		GameRegistry.registerTileEntity(TileEntityVoidNode.class, "tileentityvoidnode");
+		GameRegistry.registerTileEntity(TileEntityRift.class, "tileentityrift");
 		DimensionRegistry.mainRegistry();
 		VoidEntities.registerEntities();
 		MinecraftForge.EVENT_BUS.register(EventHandler.class);

@@ -118,11 +118,17 @@ public class VoidAltar extends Block implements ITileEntityProvider, IRegisterMo
     
 	    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
 	    {
-		    if (worldIn.getBlockState(pos.add(0, 2, 0)).getBlock() == VoidBlocks.VOIDREND) {worldIn.destroyBlock(pos.add(0, 2, 0), false);}
-		    TileEntityAltar te = (TileEntityAltar) worldIn.getTileEntity(pos);
-		    if(te.rift) {te.riftBreak();te.destroyTE = true;}
-	        IDisplay.blockBreak(te);
-	        super.breakBlock(worldIn, pos, state);
+		    if (!worldIn.isRemote) {
+				if (worldIn.getBlockState(pos.add(0, 2, 0)).getBlock() == VoidBlocks.VOIDREND) {
+					worldIn.destroyBlock(pos.add(0, 2, 0), false);
+				}
+				TileEntityAltar te = (TileEntityAltar) worldIn.getTileEntity(pos);
+				if (te.rift) {
+					te.riftBreak();
+					te.destroyTE = true;
+				}
+				IDisplay.blockBreak(te);
+			}
 	    }
     
 }

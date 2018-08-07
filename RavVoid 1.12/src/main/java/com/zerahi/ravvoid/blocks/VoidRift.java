@@ -5,6 +5,7 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import com.zerahi.ravvoid.VoidMod;
+import com.zerahi.ravvoid.blocks.tileentity.TileEntityRift;
 import com.zerahi.ravvoid.dimension.TeleporterVoid;
 import com.zerahi.ravvoid.register.VoidBlocks;
 import com.zerahi.ravvoid.register.VoidItems;
@@ -13,6 +14,7 @@ import com.zerahi.ravvoid.utils.proxy.ClientProxy;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
@@ -26,6 +28,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -34,7 +37,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
-public class VoidRift extends Block implements IRegisterModels {
+public class VoidRift extends Block implements ITileEntityProvider, IRegisterModels {
 
 
 	protected static final AxisAlignedBB bounds = new AxisAlignedBB(2D, 2D, 2D, 2D, 2D, 2D);
@@ -54,6 +57,11 @@ public class VoidRift extends Block implements IRegisterModels {
 	{
 		VoidMod.proxy.registerItem(Item.getItemFromBlock(this), 5, "inventory");	
 		ClientProxy.stateMap(this);
+	}
+
+	@Override
+	public TileEntity createNewTileEntity(World worldIn, int meta) {
+		return new TileEntityRift();
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -182,5 +190,4 @@ public class VoidRift extends Block implements IRegisterModels {
   	 {
 		return BlockRenderLayer.TRANSLUCENT;
   	 }
-
 }

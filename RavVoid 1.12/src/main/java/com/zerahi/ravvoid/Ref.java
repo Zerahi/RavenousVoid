@@ -15,7 +15,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 public class Ref {
 	public static final String MODID = "rv";
 	public static final String NAME = "Ravenous Void";
-	public static final String Version = "1.12.2";
+	public static final String Version = "0.0.25";
 	public static final String ACCEPTED_VERSIONS = "[1.12.2]";
 	
 	public static final String CLIENT_PROXY_CLASS = "com.zerahi.ravvoid.utils.proxy.ClientProxy";

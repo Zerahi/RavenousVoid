@@ -4,6 +4,7 @@ import java.util.Random;
 
 import com.zerahi.ravvoid.Ref;
 import com.zerahi.ravvoid.blocks.VoidRift;
+import com.zerahi.ravvoid.register.DimensionRegistry;
 import com.zerahi.ravvoid.register.Triggers;
 import com.zerahi.ravvoid.register.VoidBlocks;
 import com.zerahi.ravvoid.register.VoidItems;
@@ -49,8 +50,7 @@ public class TileEntityAltar extends TileEntity implements ITickable, IDisplay, 
 		private int delay;
 		private int changeDelay;
 		public boolean rift;
-		private EnumFacing direction = null;
-		private boolean check = false;
+		public EnumFacing direction = null;
 		private BlockPos OutPortal = BlockPos.ORIGIN;
 		private Ticket ticket;
 		private ChunkPos forcedChunk;
@@ -214,6 +214,10 @@ public class TileEntityAltar extends TileEntity implements ITickable, IDisplay, 
 										Spot++;
 										this.world.destroyBlock(cpos, true);
 										this.world.setBlockState(cpos, VoidBlocks.VOIDRIFT.getDefaultState().withProperty(VoidRift.SPOT, Spot).withProperty(VoidRift.FACING, this.direction.getOpposite()));
+										TileEntityRift te = (TileEntityRift) this.world.getTileEntity(cpos);
+										te.Dir = this.direction;
+										te.Spot = Spot;
+										te.change();
 									}
 								}
 							} else if (this.direction == EnumFacing.SOUTH) {
@@ -225,6 +229,10 @@ public class TileEntityAltar extends TileEntity implements ITickable, IDisplay, 
 										Spot++;
 										this.world.destroyBlock(cpos, true);
 										this.world.setBlockState(cpos, VoidBlocks.VOIDRIFT.getDefaultState().withProperty(VoidRift.SPOT, Spot).withProperty(VoidRift.FACING, this.direction.getOpposite()));
+										TileEntityRift te = (TileEntityRift) this.world.getTileEntity(cpos);
+										te.Dir = this.direction;
+										te.Spot = Spot;
+										te.change();
 									}
 								}
 							} else if (this.direction == EnumFacing.EAST) {
@@ -236,6 +244,10 @@ public class TileEntityAltar extends TileEntity implements ITickable, IDisplay, 
 										Spot++;
 										this.world.destroyBlock(cpos, true);
 										this.world.setBlockState(cpos, VoidBlocks.VOIDRIFT.getDefaultState().withProperty(VoidRift.SPOT, Spot).withProperty(VoidRift.FACING, this.direction.getOpposite()));
+										TileEntityRift te = (TileEntityRift) this.world.getTileEntity(cpos);
+										te.Dir = this.direction;
+										te.Spot = Spot;
+										te.change();
 									}
 								}
 							} else if (this.direction == EnumFacing.WEST) {
@@ -246,6 +258,10 @@ public class TileEntityAltar extends TileEntity implements ITickable, IDisplay, 
 										Spot++;
 										this.world.destroyBlock(cpos, true);
 										this.world.setBlockState(cpos, VoidBlocks.VOIDRIFT.getDefaultState().withProperty(VoidRift.SPOT, Spot).withProperty(VoidRift.FACING, this.direction.getOpposite()));
+										TileEntityRift te = (TileEntityRift) this.world.getTileEntity(cpos);
+										te.Dir = this.direction;
+										te.Spot = Spot;
+										te.change();
 									}
 								}
 							}
@@ -255,7 +271,6 @@ public class TileEntityAltar extends TileEntity implements ITickable, IDisplay, 
 							}							
 							count = 0;
 						}
-					}else {
 					}
 				}
 			else if (this.rift && ItemStack.areItemsEqual(new ItemStack(this.display.getItem()), new ItemStack(VoidItems.AWAKENEDVOIDORB)) && this.world.getBlockState(this.pos.add(0, 2, 0)).getBlock() == VoidBlocks.VOIDREND) {
@@ -268,61 +283,61 @@ public class TileEntityAltar extends TileEntity implements ITickable, IDisplay, 
 			} else {if (this.counter != 0) {this.counter = 0; this.delay = 0;}}
 			
 
-			//Void Rift Direction check
-			if (this.rift && this.check == false) {
-				BlockPos poss = this.pos;
-				BlockPos spos;
-				BlockPos cpos;
-				int s = 0;
-				if (this.world.getBlockState(poss.add(0,1,-3)).getBlock() == VoidBlocks.VOIDRIFT) {
-					
-					this.direction = EnumFacing.NORTH;
-					spos = this.pos.add(-1,0,-3);
-					for(int y = 0; y<=2; y++) {
-						for(int x = 0; x<=2; x++) {
-							cpos = spos.add(x,y,0);
-							s++;
-							this.world.setBlockState(cpos, VoidBlocks.VOIDRIFT.getDefaultState().withProperty(VoidRift.SPOT, s).withProperty(VoidRift.FACING, this.direction.getOpposite()));
-						}
-					}
-					
-				} else if (this.world.getBlockState(poss.add(0,1,3)).getBlock() == VoidBlocks.VOIDRIFT) {
-					
-					this.direction = EnumFacing.SOUTH;
-					spos = poss.add(1,0,3);
-					for(int y = 0; y<=2; y++) {
-						for(int x = 0; x>=-2; x--) {
-							cpos = spos.add(x,y,0);
-							s++;
-							this.world.setBlockState(cpos, VoidBlocks.VOIDRIFT.getDefaultState().withProperty(VoidRift.SPOT, s).withProperty(VoidRift.FACING, this.direction.getOpposite()));
-						}
-					}
-				} else if (this.world.getBlockState(poss.add(3,1,0)).getBlock() == VoidBlocks.VOIDRIFT) {
-	
-					this.direction = EnumFacing.EAST;
-					spos = poss.add(3,0,-1);
-					for(int y = 0; y<=2; y++) {
-						for(int z = 0; z<=2; z++) {
-							cpos = spos.add(0,y,z);
-							s++;
-							this.world.setBlockState(cpos, VoidBlocks.VOIDRIFT.getDefaultState().withProperty(VoidRift.SPOT, s).withProperty(VoidRift.FACING, this.direction.getOpposite()));
-						}
-					}
-					
-				} else if (this.world.getBlockState(poss.add(-3,1,0)).getBlock() == VoidBlocks.VOIDRIFT) {
-					
-					this.direction = EnumFacing.WEST;
-					spos = poss.add(-3,0,1);
-					for(int y = 0; y<=2; y++) {
-						for(int z = 0; z>=-2; z--) {
-							cpos = spos.add(0,y,z);
-							s++;
-							this.world.setBlockState(cpos, VoidBlocks.VOIDRIFT.getDefaultState().withProperty(VoidRift.SPOT, s).withProperty(VoidRift.FACING, this.direction.getOpposite()));
-						}
-					}
-				}
-				this.check = true;
-			}
+//			//Void Rift Direction check
+//			if (this.rift && this.check == false) {
+//				BlockPos poss = this.pos;
+//				BlockPos spos;
+//				BlockPos cpos;
+//				int s = 0;
+//				if (this.world.getBlockState(poss.add(0,1,-3)).getBlock() == VoidBlocks.VOIDRIFT) {
+//					
+//					this.direction = EnumFacing.NORTH;
+//					spos = this.pos.add(-1,0,-3);
+//					for(int y = 0; y<=2; y++) {
+//						for(int x = 0; x<=2; x++) {
+//							cpos = spos.add(x,y,0);
+//							s++;
+//							this.world.setBlockState(cpos, VoidBlocks.VOIDRIFT.getDefaultState().withProperty(VoidRift.SPOT, s).withProperty(VoidRift.FACING, this.direction.getOpposite()));
+//						}
+//					}
+//					
+//				} else if (this.world.getBlockState(poss.add(0,1,3)).getBlock() == VoidBlocks.VOIDRIFT) {
+//					
+//					this.direction = EnumFacing.SOUTH;
+//					spos = poss.add(1,0,3);
+//					for(int y = 0; y<=2; y++) {
+//						for(int x = 0; x>=-2; x--) {
+//							cpos = spos.add(x,y,0);
+//							s++;
+//							this.world.setBlockState(cpos, VoidBlocks.VOIDRIFT.getDefaultState().withProperty(VoidRift.SPOT, s).withProperty(VoidRift.FACING, this.direction.getOpposite()));
+//						}
+//					}
+//				} else if (this.world.getBlockState(poss.add(3,1,0)).getBlock() == VoidBlocks.VOIDRIFT) {
+//	
+//					this.direction = EnumFacing.EAST;
+//					spos = poss.add(3,0,-1);
+//					for(int y = 0; y<=2; y++) {
+//						for(int z = 0; z<=2; z++) {
+//							cpos = spos.add(0,y,z);
+//							s++;
+//							this.world.setBlockState(cpos, VoidBlocks.VOIDRIFT.getDefaultState().withProperty(VoidRift.SPOT, s).withProperty(VoidRift.FACING, this.direction.getOpposite()));
+//						}
+//					}
+//					
+//				} else if (this.world.getBlockState(poss.add(-3,1,0)).getBlock() == VoidBlocks.VOIDRIFT) {
+//					
+//					this.direction = EnumFacing.WEST;
+//					spos = poss.add(-3,0,1);
+//					for(int y = 0; y<=2; y++) {
+//						for(int z = 0; z>=-2; z--) {
+//							cpos = spos.add(0,y,z);
+//							s++;
+//							this.world.setBlockState(cpos, VoidBlocks.VOIDRIFT.getDefaultState().withProperty(VoidRift.SPOT, s).withProperty(VoidRift.FACING, this.direction.getOpposite()));
+//						}
+//					}
+//				}
+//				this.check = true;
+//			}
 
 			//Mob spawn
 			if(this.display !=null && Ref.altarListTier1(this.display, this.world) != null && this.world.getBlockState(this.pos.up()).getBlock() == Blocks.AIR && this.world.getBlockState(this.pos.add(0, 2, 0)).getBlock() == VoidBlocks.VOIDREND) {
@@ -407,7 +422,7 @@ public class TileEntityAltar extends TileEntity implements ITickable, IDisplay, 
 					if (this.portcreate) {
 						BlockPos jpos = this.pos.add(0, -this.pos.getY(), 0);
 						BlockPos tpos = jpos;
-						this.voidWorld = DimensionManager.getWorld(16);
+						this.voidWorld = DimensionManager.getWorld(DimensionRegistry.dimensionId);
 						@SuppressWarnings("unused")
 						boolean chk = true;
 						for(int i=256; i > 2; i--) {
@@ -435,8 +450,7 @@ public class TileEntityAltar extends TileEntity implements ITickable, IDisplay, 
 								BlockPos cpos = spos.add(x2, y, 0);
 								Spot++;
 								this.voidWorld.destroyBlock(cpos, true);
-								this.voidWorld.setBlockState(cpos, VoidBlocks.VOIDRIFT.getDefaultState()
-										.withProperty(VoidRift.SPOT, Spot).withProperty(VoidRift.FACING, EnumFacing.NORTH));
+								this.voidWorld.setBlockState(cpos, VoidBlocks.VOIDRIFT.getDefaultState().withProperty(VoidRift.SPOT, Spot).withProperty(VoidRift.FACING, EnumFacing.NORTH));
 							}
 						}
 						this.portcreate = false;

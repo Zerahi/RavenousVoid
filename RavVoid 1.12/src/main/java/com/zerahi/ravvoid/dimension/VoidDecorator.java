@@ -124,6 +124,7 @@ public class VoidDecorator extends BiomeDecorator
         }
     }
     
+	@SuppressWarnings("deprecation")
 	@Override
     protected void genDecorations(Biome biomeIn, World worldIn, Random random)
     {
