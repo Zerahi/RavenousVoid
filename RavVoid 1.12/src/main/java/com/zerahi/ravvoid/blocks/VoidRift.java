@@ -5,7 +5,6 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import com.zerahi.ravvoid.VoidMod;
-import com.zerahi.ravvoid.blocks.tileentity.TileEntityRift;
 import com.zerahi.ravvoid.dimension.TeleporterVoid;
 import com.zerahi.ravvoid.register.VoidBlocks;
 import com.zerahi.ravvoid.register.VoidItems;
@@ -14,11 +13,9 @@ import com.zerahi.ravvoid.utils.proxy.ClientProxy;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
-import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -28,8 +25,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -37,19 +34,21 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
-public class VoidRift extends Block implements ITileEntityProvider, IRegisterModels {
-
+public class VoidRift extends Block implements IRegisterModels {
+	@SuppressWarnings("unused")
+	private int Spot;
 
 	protected static final AxisAlignedBB bounds = new AxisAlignedBB(2D, 2D, 2D, 2D, 2D, 2D);
-	public VoidRift(String name, Material materialIn) {
+	public VoidRift(String name, Material materialIn, int spotIn) {
 		super(materialIn);	
-		setUnlocalizedName(name);
-		setRegistryName(name);
+		setUnlocalizedName(name+spotIn);
+		setRegistryName(name + spotIn);
 		setLightLevel(0.5f);
 		setHardness(0.3F);
+		Spot = spotIn;
 		
 		VoidBlocks.BLOCKS.add(this);
-		VoidItems.ITEMS.add(new ItemBlock(this).setRegistryName(name));
+		VoidItems.ITEMS.add(new ItemBlock(this).setRegistryName(name + spotIn));
 	}
 
 	@Override
@@ -59,36 +58,22 @@ public class VoidRift extends Block implements ITileEntityProvider, IRegisterMod
 		ClientProxy.stateMap(this);
 	}
 
-	@Override
-	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return new TileEntityRift();
-	}
-
-	@SuppressWarnings("rawtypes")
-	public static final IProperty SPOT = PropertyInteger.create("spot", 1, 9);
 	public static final PropertyDirection FACING = BlockHorizontal.FACING;
 	
 	//Block State setup
-	@Override protected BlockStateContainer createBlockState() { return new BlockStateContainer(this, new IProperty[] {SPOT, FACING}); }
+	@Override protected BlockStateContainer createBlockState() { return new BlockStateContainer(this, new IProperty[] {FACING}); }
 		
-	@SuppressWarnings("unchecked")
 	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
-		if (meta != 0) {
-			return this.getDefaultState().withProperty(SPOT, Integer.valueOf((meta)));
-		}
-		else {
-			return this.getDefaultState().withProperty(SPOT, 5);
-		}
+		
+		return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta));
 	}
 		
-	@SuppressWarnings("unchecked")
 	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		int i = 0;
-		i = ((Integer)state.getValue(SPOT)).intValue();
+		int i = state.getValue(FACING).getHorizontalIndex();
 		return i;
 	}
 	//Setup Finished

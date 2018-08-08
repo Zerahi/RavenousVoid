@@ -1,0 +1,13 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "rv:voidrift3",
+        "uvlock": true
+    },
+    "variants": {
+        "facing=north": { "model": "rv:voidrift3" },
+        "facing=south": { "model": "rv:voidrift3", "y": 180 },
+        "facing=west": { "model": "rv:voidrift3", "y": 270 },
+        "facing=east": { "model": "rv:voidrift3", "y": 90 }
+    }
+}

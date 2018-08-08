@@ -6,9 +6,9 @@ import com.zerahi.ravvoid.blocks.tileentity.TileEntityChaoticNode;
 import com.zerahi.ravvoid.blocks.tileentity.TileEntityConduit;
 import com.zerahi.ravvoid.blocks.tileentity.TileEntityCrystallizer;
 import com.zerahi.ravvoid.blocks.tileentity.TileEntityPile;
-import com.zerahi.ravvoid.blocks.tileentity.TileEntityRift;
 import com.zerahi.ravvoid.blocks.tileentity.TileEntityVoidNode;
 import com.zerahi.ravvoid.network.BookGuiPacket;
+import com.zerahi.ravvoid.network.ParticlePacket;
 import com.zerahi.ravvoid.utils.EventHandler;
 import com.zerahi.ravvoid.utils.interfaces.IRegisterModels;
 
@@ -62,17 +62,17 @@ public class Register {
 
 	@SuppressWarnings("deprecation")
 	public static void preInit() {
-		GameRegistry.registerTileEntity(TileEntityPile.class, "tileentitypile");
-		GameRegistry.registerTileEntity(TileEntityAltar.class, "tileentityaltar");
-		GameRegistry.registerTileEntity(TileEntityCrystallizer.class, "tileentitycrystalizer");
-		GameRegistry.registerTileEntity(TileEntityConduit.class, "tileentityconduit");
-		GameRegistry.registerTileEntity(TileEntityChaoticNode.class, "tileentitychaoticnode");
-		GameRegistry.registerTileEntity(TileEntityVoidNode.class, "tileentityvoidnode");
-		GameRegistry.registerTileEntity(TileEntityRift.class, "tileentityrift");
+		GameRegistry.registerTileEntity(TileEntityPile.class, Ref.MODID + ":" + "tileentitypile");
+		GameRegistry.registerTileEntity(TileEntityAltar.class, Ref.MODID + ":" +  "tileentityaltar");
+		GameRegistry.registerTileEntity(TileEntityCrystallizer.class, Ref.MODID + ":" +  "tileentitycrystalizer");
+		GameRegistry.registerTileEntity(TileEntityConduit.class, Ref.MODID + ":" +  "tileentityconduit");
+		GameRegistry.registerTileEntity(TileEntityChaoticNode.class, Ref.MODID + ":" +  "tileentitychaoticnode");
+		GameRegistry.registerTileEntity(TileEntityVoidNode.class, Ref.MODID + ":" +  "tileentityvoidnode");
 		DimensionRegistry.mainRegistry();
 		VoidEntities.registerEntities();
 		MinecraftForge.EVENT_BUS.register(EventHandler.class);
 		Ref.INSTANCE.registerMessage(BookGuiPacket.Handler.class, BookGuiPacket.class, 0, Side.CLIENT);
+		Ref.INSTANCE.registerMessage(ParticlePacket.Handler.class, ParticlePacket.class, 1, Side.CLIENT);
 	}
 	
 	public static void Init() {

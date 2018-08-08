@@ -47,16 +47,18 @@ public class TileEntityAltar extends TileEntity implements ITickable, IDisplay, 
 		private int counter;
 		private int rcounter;
 		private int mcounter;
-		private int delay;
 		private int changeDelay;
+		private int delay;
 		public boolean rift;
 		public EnumFacing direction = null;
 		private BlockPos OutPortal = BlockPos.ORIGIN;
 		private Ticket ticket;
 		private ChunkPos forcedChunk;
 		private String placer;
+		private boolean particalesActive;
 
 		public boolean destroyTE = false;
+
 				
 		//nbt setup
 		@Override
@@ -92,7 +94,7 @@ public class TileEntityAltar extends TileEntity implements ITickable, IDisplay, 
 			if (compound.hasKey("create")) {
 				int[] create = compound.getIntArray("create");;
 				if (create[0] == 0) this.portcreate = false; else this.portcreate = true;
-				if (create[2] == 0) this.portdestroy = false; else this.portdestroy = true;
+				if (create[1] == 0) this.portdestroy = false; else this.portdestroy = true;
 				compound.setIntArray("create", create);
 			}
 			this.direction = EnumFacing.byName(compound.getString("direction"));
@@ -126,31 +128,38 @@ public class TileEntityAltar extends TileEntity implements ITickable, IDisplay, 
 		public void change() {this.markDirty();}
 		//nbt end
 		
-		@SuppressWarnings("unchecked")
 		@Override
-		public void update() {			
+		public void update() {
+			//Display check
+			IDisplay.check(this);
+			
+			//particle check
+			if (world.isRemote && this.particalesActive) particles();
+			
+			if(!world.isRemote) {
 			if(this.display !=null) {
 				
-			//Void Rend spawn
-			if((ItemStack.areItemsEqual(this.display, new ItemStack(VoidItems.VOIDORB)) ||
-					ItemStack.areItemsEqual(new ItemStack(this.display.getItem()), new ItemStack(VoidItems.AWAKENEDVOIDORB)))
-					&&  this.world.getBlockState(this.pos.up()).getBlock() == Blocks.AIR && world.getBlockState(pos.add(0, 2, 0)).getBlock()
-					== Blocks.AIR) {
-
-				if (powered(1)) {
-					if (this.rcounter < 500) {
-						this.rcounter++;
-						if (this.delay == 0) {this.delay = 1;}
-					}
-					else {
-							this.world.setBlockState(this.pos.add(0, 2, 0), VoidBlocks.VOIDREND.getDefaultState());
-							if (!world.isRemote && this.world.getPlayerEntityByName(this.placer) != null) Triggers.VOIDREND.trigger((EntityPlayerMP) this.world.getPlayerEntityByName(this.placer));
+				//Void Rend spawn
+				if((ItemStack.areItemsEqual(this.display, new ItemStack(VoidItems.VOIDORB)) ||
+						ItemStack.areItemsEqual(new ItemStack(this.display.getItem()), new ItemStack(VoidItems.AWAKENEDVOIDORB)))
+						&&  this.world.getBlockState(this.pos.up()).getBlock() == Blocks.AIR && world.getBlockState(pos.add(0, 2, 0)).getBlock()
+						== Blocks.AIR) {
+	
+					if (powered(1)) {
+						if (this.rcounter < 500) {
+							this.rcounter++;
+							if (!particalesActive) IDisplay.particlesToggle(this, this.particalesActive = true, false);
 						}
-				}
-			} else {if (this.rcounter != 0) {this.rcounter = 0; this.delay = 0;}}
+						else {
+								this.world.setBlockState(this.pos.add(0, 2, 0), VoidBlocks.VOIDREND.getDefaultState());
+								if (!world.isRemote && this.world.getPlayerEntityByName(this.placer) != null) Triggers.VOIDREND.trigger((EntityPlayerMP) this.world.getPlayerEntityByName(this.placer));
+								IDisplay.particlesToggle(this, this.particalesActive =false, false);
+							}
+					}
+				} else {if (this.rcounter != 0) {this.rcounter = 0; IDisplay.particlesToggle(this, this.particalesActive =false, false);}}
 
 			//Void Rift spawn
-			if(!this.world.isRemote && !this.rift && ItemStack.areItemsEqual(new ItemStack(this.display.getItem()), new ItemStack(VoidItems.AWAKENEDVOIDORB)) && world.getBlockState(pos.add(0, 2, 0)).getBlock() == VoidBlocks.VOIDREND) {
+			if(!this.rift && ItemStack.areItemsEqual(new ItemStack(this.display.getItem()), new ItemStack(VoidItems.AWAKENEDVOIDORB)) && world.getBlockState(pos.add(0, 2, 0)).getBlock() == VoidBlocks.VOIDREND) {
 
 				if (((IPower)this.display.getItem()).getPower(this.display) >= 200 && powered(2)) {
 
@@ -197,76 +206,69 @@ public class TileEntityAltar extends TileEntity implements ITickable, IDisplay, 
 					if(count == 9) {
 						if (this.counter < 1000) {
 							this.counter++;
-							if (this.delay == 0) {this.delay = 1;}
+							if (!particalesActive) IDisplay.particlesToggle(this, this.particalesActive = true, false);
 						} else {
 							
 							((IPower)this.display.getItem()).powerHelper(this.display, -200);
 							this.rift = true;
-							this.delay = 0;
+							IDisplay.particlesToggle(this, this.particalesActive = false, false);
 							this.counter = 0;
 							
-							int Spot = 0;
-							if (this.direction == EnumFacing.NORTH) {
-								spos = this.pos.add(-1,0,-3);
-								for(int y = 0; y<=2; y++) {
-									for(int x = 0; x<=2; x++) {
-										cpos = spos.add(x,y,0);
-										Spot++;
-										this.world.destroyBlock(cpos, true);
-										this.world.setBlockState(cpos, VoidBlocks.VOIDRIFT.getDefaultState().withProperty(VoidRift.SPOT, Spot).withProperty(VoidRift.FACING, this.direction.getOpposite()));
-										TileEntityRift te = (TileEntityRift) this.world.getTileEntity(cpos);
-										te.Dir = this.direction;
-										te.Spot = Spot;
-										te.change();
+							if (!world.isRemote) {
+								int Spot = 0;
+								if (this.direction == EnumFacing.NORTH) {
+									spos = this.pos.add(-1, 0, -3);
+									for (int y = 0; y <= 2; y++) {
+										for (int x = 0; x <= 2; x++) {
+											cpos = spos.add(x, y, 0);
+											Spot++;
+											this.world.destroyBlock(cpos, true);
+											this.world.setBlockState(cpos,
+													VoidBlocks.VOIDRIFT[Spot-1].getDefaultState().withProperty(VoidRift.FACING, this.direction.getOpposite()));
+										}
+									}
+								} else if (this.direction == EnumFacing.SOUTH) {
+
+									spos = this.pos.add(1, 0, 3);
+									for (int y = 0; y <= 2; y++) {
+										for (int x = 0; x >= -2; x--) {
+											cpos = spos.add(x, y, 0);
+											Spot++;
+											this.world.destroyBlock(cpos, true);
+											this.world.setBlockState(cpos,
+													VoidBlocks.VOIDRIFT[Spot-1].getDefaultState().withProperty(VoidRift.FACING, this.direction.getOpposite()));
+										}
+									}
+								} else if (this.direction == EnumFacing.EAST) {
+
+									spos = this.pos.add(3, 0, -1);
+									for (int y = 0; y <= 2; y++) {
+										for (int z = 0; z <= 2; z++) {
+											cpos = spos.add(0, y, z);
+											Spot++;
+											this.world.destroyBlock(cpos, true);
+											this.world.setBlockState(cpos,
+													VoidBlocks.VOIDRIFT[Spot-1].getDefaultState().withProperty(VoidRift.FACING, this.direction.getOpposite()));
+										}
+									}
+								} else if (this.direction == EnumFacing.WEST) {
+									spos = this.pos.add(-3, 0, 1);
+									for (int y = 0; y <= 2; y++) {
+										for (int z = 0; z >= -2; z--) {
+											cpos = spos.add(0, y, z);
+											Spot++;
+											this.world.destroyBlock(cpos, true);
+											this.world.setBlockState(cpos,
+													VoidBlocks.VOIDRIFT[Spot-1].getDefaultState().withProperty(
+																	VoidRift.FACING, this.direction.getOpposite()));
+										}
 									}
 								}
-							} else if (this.direction == EnumFacing.SOUTH) {
-								
-								spos = this.pos.add(1,0,3);
-								for(int y = 0; y<=2; y++) {
-									for(int x = 0; x>=-2; x--) {
-										cpos = spos.add(x,y,0);
-										Spot++;
-										this.world.destroyBlock(cpos, true);
-										this.world.setBlockState(cpos, VoidBlocks.VOIDRIFT.getDefaultState().withProperty(VoidRift.SPOT, Spot).withProperty(VoidRift.FACING, this.direction.getOpposite()));
-										TileEntityRift te = (TileEntityRift) this.world.getTileEntity(cpos);
-										te.Dir = this.direction;
-										te.Spot = Spot;
-										te.change();
-									}
-								}
-							} else if (this.direction == EnumFacing.EAST) {
-								
-								spos = this.pos.add(3,0,-1);
-								for(int y = 0; y<=2; y++) {
-									for(int z = 0; z<=2; z++) {
-										cpos = spos.add(0,y,z);
-										Spot++;
-										this.world.destroyBlock(cpos, true);
-										this.world.setBlockState(cpos, VoidBlocks.VOIDRIFT.getDefaultState().withProperty(VoidRift.SPOT, Spot).withProperty(VoidRift.FACING, this.direction.getOpposite()));
-										TileEntityRift te = (TileEntityRift) this.world.getTileEntity(cpos);
-										te.Dir = this.direction;
-										te.Spot = Spot;
-										te.change();
-									}
-								}
-							} else if (this.direction == EnumFacing.WEST) {
-								spos = this.pos.add(-3,0,1);
-								for(int y = 0; y<=2; y++) {
-									for(int z = 0; z>=-2; z--) {
-										cpos = spos.add(0,y,z);
-										Spot++;
-										this.world.destroyBlock(cpos, true);
-										this.world.setBlockState(cpos, VoidBlocks.VOIDRIFT.getDefaultState().withProperty(VoidRift.SPOT, Spot).withProperty(VoidRift.FACING, this.direction.getOpposite()));
-										TileEntityRift te = (TileEntityRift) this.world.getTileEntity(cpos);
-										te.Dir = this.direction;
-										te.Spot = Spot;
-										te.change();
-									}
-								}
+								this.portcreate = true;
+								if (this.world.getPlayerEntityByName(this.placer) != null)
+									Triggers.VOIDRIFT.trigger(
+											(EntityPlayerMP) this.world.getPlayerEntityByName(this.placer));
 							}
-							this.portcreate = true;
-							if (!world.isRemote && this.world.getPlayerEntityByName(this.placer) != null) Triggers.VOIDRIFT.trigger((EntityPlayerMP) this.world.getPlayerEntityByName(this.placer));
 							this.change();							
 							}							
 							count = 0;
@@ -280,71 +282,14 @@ public class TileEntityAltar extends TileEntity implements ITickable, IDisplay, 
 						this.counter = 0;
 					} else this.riftBreak();						
 				} else this.counter++;
-			} else {if (this.counter != 0) {this.counter = 0; this.delay = 0;}}
+			} else {if (this.counter != 0) {this.counter = 0; IDisplay.particlesToggle(this, this.particalesActive =false, false);}}
 			
-
-//			//Void Rift Direction check
-//			if (this.rift && this.check == false) {
-//				BlockPos poss = this.pos;
-//				BlockPos spos;
-//				BlockPos cpos;
-//				int s = 0;
-//				if (this.world.getBlockState(poss.add(0,1,-3)).getBlock() == VoidBlocks.VOIDRIFT) {
-//					
-//					this.direction = EnumFacing.NORTH;
-//					spos = this.pos.add(-1,0,-3);
-//					for(int y = 0; y<=2; y++) {
-//						for(int x = 0; x<=2; x++) {
-//							cpos = spos.add(x,y,0);
-//							s++;
-//							this.world.setBlockState(cpos, VoidBlocks.VOIDRIFT.getDefaultState().withProperty(VoidRift.SPOT, s).withProperty(VoidRift.FACING, this.direction.getOpposite()));
-//						}
-//					}
-//					
-//				} else if (this.world.getBlockState(poss.add(0,1,3)).getBlock() == VoidBlocks.VOIDRIFT) {
-//					
-//					this.direction = EnumFacing.SOUTH;
-//					spos = poss.add(1,0,3);
-//					for(int y = 0; y<=2; y++) {
-//						for(int x = 0; x>=-2; x--) {
-//							cpos = spos.add(x,y,0);
-//							s++;
-//							this.world.setBlockState(cpos, VoidBlocks.VOIDRIFT.getDefaultState().withProperty(VoidRift.SPOT, s).withProperty(VoidRift.FACING, this.direction.getOpposite()));
-//						}
-//					}
-//				} else if (this.world.getBlockState(poss.add(3,1,0)).getBlock() == VoidBlocks.VOIDRIFT) {
-//	
-//					this.direction = EnumFacing.EAST;
-//					spos = poss.add(3,0,-1);
-//					for(int y = 0; y<=2; y++) {
-//						for(int z = 0; z<=2; z++) {
-//							cpos = spos.add(0,y,z);
-//							s++;
-//							this.world.setBlockState(cpos, VoidBlocks.VOIDRIFT.getDefaultState().withProperty(VoidRift.SPOT, s).withProperty(VoidRift.FACING, this.direction.getOpposite()));
-//						}
-//					}
-//					
-//				} else if (this.world.getBlockState(poss.add(-3,1,0)).getBlock() == VoidBlocks.VOIDRIFT) {
-//					
-//					this.direction = EnumFacing.WEST;
-//					spos = poss.add(-3,0,1);
-//					for(int y = 0; y<=2; y++) {
-//						for(int z = 0; z>=-2; z--) {
-//							cpos = spos.add(0,y,z);
-//							s++;
-//							this.world.setBlockState(cpos, VoidBlocks.VOIDRIFT.getDefaultState().withProperty(VoidRift.SPOT, s).withProperty(VoidRift.FACING, this.direction.getOpposite()));
-//						}
-//					}
-//				}
-//				this.check = true;
-//			}
-
 			//Mob spawn
 			if(this.display !=null && Ref.altarListTier1(this.display, this.world) != null && this.world.getBlockState(this.pos.up()).getBlock() == Blocks.AIR && this.world.getBlockState(this.pos.add(0, 2, 0)).getBlock() == VoidBlocks.VOIDREND) {
 					
 				if (this.mcounter < 200) {
 						this.mcounter++;
-						if (this.delay == 0) {this.delay = 1;}
+						if (!particalesActive) IDisplay.particlesToggle(this, this.particalesActive = true, false);
 				}	
 				else {	
 		
@@ -366,55 +311,32 @@ public class TileEntityAltar extends TileEntity implements ITickable, IDisplay, 
 		                if(!this.world.isRemote)AnvilChunkLoader.spawnEntity(spawn, this.world);
 	                        this.world.playEvent(2004, this.pos, 0);
 
-	                        if (entityliving != null)
+	                        if (this.world.isRemote && entityliving != null)
 	                        {
 	                            entityliving.spawnExplosionParticle();
 	                        }
-					this.delay = 0;
+	                        IDisplay.particlesToggle(this, this.particalesActive = false, false);
 					this.mcounter = 0;
 					IDisplay.removeItem(null, this);
 				}
 					 
 			}
 			else {
-					if (this.mcounter != 0) {this.mcounter = 0; this.delay = 0;}
+					if (this.mcounter != 0) {this.mcounter = 0; IDisplay.particlesToggle(this, this.particalesActive = false, false);}
 			}
 			
-			//Particle Spawn
-			if (this.world.isRemote && this.delay < 60 && this.delay != 0) {this.delay++;}
-			else if (this.world.isRemote && this.delay == 0) {}
-			else if (this.world.isRemote) {
-				
-				Random rand = new Random();
-				double d0 = (double)this.pos.getX() + 0.5D + ((double)rand.nextFloat() - 0.5D) * 0.4D;
-				double d1 = (double)((float)this.pos.getY() + 1F);
-				double d2 = (double)this.pos.getZ() + 0.5D + ((double)rand.nextFloat() - 0.5D) * 0.4D;
-				float f = 15.0F;
-				float f1 = f * 0.6F + 0.4F;
-		               	float f2 = Math.max(0.0F, f * f * 0.7F - 0.5F);
-		               	float f3 = Math.max(0.0F, f * f * 0.6F - 0.7F);
-		               	this.world.spawnParticle(EnumParticleTypes.DRIP_LAVA, d0, d1, d2, (double)f1, (double)f2, (double)f3, new int[0]);
-		               	this.delay = 1;
-			}
-			
-			//Makes sure disp is showing
-			if (this.display != null) {
-				if (this.entity == null) {this.setDisplayItem(null, null);}
-				else if (this.entity.isDead) {this.setDisplayItem(null, null);
-				this.change();}
-			}
 		} else {
 			if (this.rift) {this.riftBreak();}
-			if (this.delay != 0) {this.delay = 0;}
+			if (this.particalesActive) IDisplay.particlesToggle(this, this.particalesActive = false, false);
 			if (this.counter != 0) {this.counter = 0;}
 			if (this.rcounter != 0) {this.rcounter = 0;}
 			if (this.mcounter != 0) {this.mcounter = 0;}
 		}
 		
-		if(!this.world.isRemote && (this.portcreate || this.portdestroy)) {portalChange();}
+		if(this.portcreate || this.portdestroy) {portalChange();}
+		}
 	}
 		
-		@SuppressWarnings("unchecked")
 		private void portalChange() {
 			this.voidWorld = DimensionManager.getWorld(16);
 			if (this.changeDelay == -1 || this.changeDelay >= 60) {
@@ -450,7 +372,7 @@ public class TileEntityAltar extends TileEntity implements ITickable, IDisplay, 
 								BlockPos cpos = spos.add(x2, y, 0);
 								Spot++;
 								this.voidWorld.destroyBlock(cpos, true);
-								this.voidWorld.setBlockState(cpos, VoidBlocks.VOIDRIFT.getDefaultState().withProperty(VoidRift.SPOT, Spot).withProperty(VoidRift.FACING, EnumFacing.NORTH));
+								this.voidWorld.setBlockState(cpos, VoidBlocks.VOIDRIFT[Spot-1].getDefaultState().withProperty(VoidRift.FACING, EnumFacing.NORTH));
 							}
 						}
 						this.portcreate = false;
@@ -579,4 +501,25 @@ public class TileEntityAltar extends TileEntity implements ITickable, IDisplay, 
 	public void setDisplay(ItemStack displayIn) {
 		this.display = displayIn;
 	}
+
+	@Override
+	public void particles() {
+		//Particle Spawn
+		if (this.delay < 20) {this.delay++;}
+		else {
+			Random rand = new Random();
+			double d0 = (double) this.pos.getX() + 0.5D + ((double) rand.nextFloat() - 0.5D) * 0.4D;
+			double d1 = (double) ((float) this.pos.getY() + 1F);
+			double d2 = (double) this.pos.getZ() + 0.5D + ((double) rand.nextFloat() - 0.5D) * 0.4D;
+			float f = 15.0F;
+			float f1 = f * 0.6F + 0.4F;
+			float f2 = Math.max(0.0F, f * f * 0.7F - 0.5F);
+			float f3 = Math.max(0.0F, f * f * 0.6F - 0.7F);
+			this.world.spawnParticle(EnumParticleTypes.DRIP_LAVA, d0, d1, d2, (double) f1, (double) f2, (double) f3,new int[0]);
+			this.delay = 0;
+		}
+	}
+
+	@Override
+	public void setParticle(boolean state) {this.particalesActive = state;}
 }
