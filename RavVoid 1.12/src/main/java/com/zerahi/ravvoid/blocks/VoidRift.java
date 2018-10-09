@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 
 import com.zerahi.ravvoid.VoidMod;
 import com.zerahi.ravvoid.dimension.TeleporterVoid;
+import com.zerahi.ravvoid.register.Triggers;
 import com.zerahi.ravvoid.register.VoidBlocks;
 import com.zerahi.ravvoid.register.VoidItems;
 import com.zerahi.ravvoid.utils.interfaces.IRegisterModels;
@@ -102,6 +103,7 @@ public class VoidRift extends Block implements IRegisterModels {
 			if(entityIn.timeUntilPortal <= 0){
 				if(entityIn instanceof EntityPlayerMP){
 					EntityPlayerMP player = (EntityPlayerMP)entityIn;
+					if (!worldIn.isRemote) Triggers.THROUGH.trigger(player);
 					//					thePlayer.addStat(ACAchievements.enter_abyssal_wasteland, 1);
 
 					player.timeUntilPortal = 30;

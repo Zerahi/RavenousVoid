@@ -31,7 +31,8 @@ public class Triggers {
 	public static final CustomTriggers CONDUIT = new CustomTriggers("conduit");
 	public static final CustomTriggers SIGHT = new CustomTriggers("sight");
 	public static final CustomTriggers VOIDRIFT = new CustomTriggers("voidrift");
-	public static final CustomTriggers Through = new CustomTriggers("through");
+	public static final CustomTriggers THROUGH = new CustomTriggers("through");
+	public static final CustomTriggers TEAR = new CustomTriggers("tear");
     
 	public static void init() {
 		TRIGGERS.add(RAVVOID);
@@ -51,7 +52,8 @@ public class Triggers {
 		TRIGGERS.add(CONDUIT);
 		TRIGGERS.add(SIGHT);
 		TRIGGERS.add(VOIDRIFT);
-		TRIGGERS.add(Through);
+		TRIGGERS.add(THROUGH);
+		TRIGGERS.add(TEAR);
 		
 		Method method; {}
 		try {

@@ -90,7 +90,7 @@ public class TileEntityConduit extends TileEntity implements ITickable, IDisplay
 			} else if (item.getPower(this.display) < item.getMaxPower()) {
 				this.upkeepdelay++;
 			} else if (this.particalesActive) IDisplay.particlesToggle(this, this.particalesActive = false, false);
-		}
+		} else if (this.particalesActive) IDisplay.particlesToggle(this, this.particalesActive = false, false);
 	}
 	
 	public int powered() {

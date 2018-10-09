@@ -1,0 +1,20 @@
+{
+    "display": {
+        "icon": {
+            "item": "rv:chaoticnode"
+        },
+        "title": {
+            "translate": "advancements.tear.title"
+        },
+        "description": {
+            "translate": "advancements.tear.description"
+        },
+        "background": "minecraft:textures/gui/advancements/backgrounds/stone.png"
+    },
+    "parent": "rv:through",
+    "criteria": {
+        "ravvoid": {
+            "trigger": "tear"
+        }
+    }
+}

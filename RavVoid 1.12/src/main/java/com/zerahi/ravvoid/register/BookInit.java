@@ -47,6 +47,7 @@ public class BookInit {
 		Entrys.add(new BookEntry("Sight", 14, false, "Sight", VoidItems.AWAKENEDVOIDORB, "sight", true, false));
 		Entrys.add(new BookEntry("Void Rift", 15, false, "Sight", VoidItems.PUREVOIDSHARD, "voidrift", true, false));
 		Entrys.add(new BookEntry("Through the Rift", 16, false, "Sight", Item.getItemFromBlock(VoidBlocks.ASH), "through", true, false));
+		Entrys.add(new BookEntry("Instability", 17, false, "Sight", Item.getItemFromBlock(VoidBlocks.CHAOTICNODE), "tear", true, false));
 		
 		addText();
 		//Text and items for entries
@@ -166,6 +167,9 @@ public class BookInit {
 		case 16: entry.Item[4] = VoidItems.AWAKENEDVOIDORB;
 		entry.itemText = "Walk through the Void Rift.";
 		break;
+		case 17: entry.Item[4] = Item.getItemFromBlock(VoidBlocks.CHAOTICNODE);
+		entry.itemText = "Pass through a void tear.";
+		break;
 		default: break;
 		}
 	}
@@ -260,6 +264,13 @@ public class BookInit {
 				+ " the Orb. Should i need to, I may be able to use one of them to return. Their is no guarantee on where in this world I would"
 				+ " end up and how safe it may be. I should only bring items that are essential it may be hard to return to them if the worst "
 				+ "happens.");
+		//17
+		Text.add("I stumble as I pass through the rift, the darkness fells like a pressure surrounding me pressing in from all sides. Like a "
+				+ "film along the surface of it I can sense a chaotic energy, it seems to be holding back the void somehow. I need to "
+				+ "investigate further. The ground around me is covered in ash and the stone itself seems infused with the chaotic energy. "
+				+ "I can see several void creatures I should be prepared for a fight. My first objective should be to find one of the weak "
+				+ "spots to I can be sure I can return safely. I see small structures with what feels like stabilized tears hovering over them. "
+				+ "I should find one and try to pass through.");
 	}
 	
 	public static void checkAdvancements(EntityPlayerMP player) {
