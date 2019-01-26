@@ -33,6 +33,7 @@ public class Triggers {
 	public static final CustomTriggers VOIDRIFT = new CustomTriggers("voidrift");
 	public static final CustomTriggers THROUGH = new CustomTriggers("through");
 	public static final CustomTriggers TEAR = new CustomTriggers("tear");
+	public static final CustomTriggers TOWER = new CustomTriggers("tower");
     
 	public static void init() {
 		TRIGGERS.add(RAVVOID);
@@ -54,6 +55,7 @@ public class Triggers {
 		TRIGGERS.add(VOIDRIFT);
 		TRIGGERS.add(THROUGH);
 		TRIGGERS.add(TEAR);
+		TRIGGERS.add(TOWER);
 		
 		Method method; {}
 		try {

@@ -2,7 +2,7 @@ package com.zerahi.ravvoid.entity.mob;
 
 import javax.annotation.Nullable;
 
-import com.zerahi.ravvoid.Ref;
+import com.zerahi.ravvoid.register.VoidEntities;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -76,7 +76,7 @@ public class EntityForgedChaos extends EntityMob
     @Nullable
     protected ResourceLocation getLootTable()
     {
-        return Ref.FORGEDCHAOSLOOT;
+        return VoidEntities.MobByName("forgedchaos").LootTable;
     }
     
     public boolean attackEntityAsMob(Entity entityIn)

@@ -5,8 +5,7 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import com.zerahi.ravvoid.VoidMod;
-import com.zerahi.ravvoid.dimension.TeleporterVoid;
-import com.zerahi.ravvoid.register.Triggers;
+import com.zerahi.ravvoid.blocks.tileentity.TileEntityVoidRift;
 import com.zerahi.ravvoid.register.VoidBlocks;
 import com.zerahi.ravvoid.register.VoidItems;
 import com.zerahi.ravvoid.utils.interfaces.IRegisterModels;
@@ -14,6 +13,7 @@ import com.zerahi.ravvoid.utils.proxy.ClientProxy;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
@@ -21,21 +21,18 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.MinecraftServer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 
-public class VoidRift extends Block implements IRegisterModels {
+public class VoidRift extends Block implements ITileEntityProvider, IRegisterModels {
 	@SuppressWarnings("unused")
 	private int Spot;
 
@@ -97,50 +94,36 @@ public class VoidRift extends Block implements IRegisterModels {
 	 */
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
 	{
-		int VoidDimensionID = 10;
-		if (worldIn.provider.getDimensionType().getId() == 0) VoidDimensionID = 16; else if (worldIn.provider.getDimensionType().getId() == 16) VoidDimensionID = 0;
+		BlockPos Tpos = pos;
+		boolean found = false;
+		if (!this.getLocalizedName().endsWith("5")) {
+			for (int x = -1; x <=1; x++) {
+				for (int y = -1; y <=1; y++) {
+					for (int z = -1; z <=1; z++) {
+						if (!found) {
+							if (worldIn.getBlockState(Tpos.add(x, y, z)).getBlock().getRegistryName().getResourcePath().endsWith("5")) {
+								Tpos = Tpos.add(x, y, z);
+								found = true;
+							}
+						}
+					}
+				}
+			}
+		} else Tpos = pos;
+		
+
+		int DestDimID = 10;
+		if (worldIn.provider.getDimensionType().getId() == 0) DestDimID = 16; else if (worldIn.provider.getDimensionType().getId() == 16) DestDimID = 0;
 		if (!entityIn.isRiding() && !entityIn.isBeingRidden() && !worldIn.isRemote)
 			if(entityIn.timeUntilPortal <= 0){
 				if(entityIn instanceof EntityPlayerMP){
 					EntityPlayerMP player = (EntityPlayerMP)entityIn;
-					if (!worldIn.isRemote) Triggers.THROUGH.trigger(player);
-					//					thePlayer.addStat(ACAchievements.enter_abyssal_wasteland, 1);
-
 					player.timeUntilPortal = 30;
-					if (player.dimension != VoidDimensionID)
-					{
-						if(!ForgeHooks.onTravelToDimension(player, VoidDimensionID)) return;
-						player.mcServer.getPlayerList().transferPlayerToDimension(player, VoidDimensionID, new TeleporterVoid(player.mcServer.getWorld(VoidDimensionID), this, Blocks.AIR.getDefaultState()));
+					TileEntity te = worldIn.getTileEntity(Tpos);
+					BlockPos dpos = Tpos;if (DestDimID == 16) {
+						dpos = dpos.offset(worldIn.getBlockState(pos).getValue(FACING), 1);
 					}
-					else {
-						if(!ForgeHooks.onTravelToDimension(player, 0)) return;
-						player.mcServer.getPlayerList().transferPlayerToDimension(player, 0, new TeleporterVoid(player.mcServer.getWorld(0), this, Blocks.AIR.getDefaultState()));
-					}
-				} else {
-					MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
-					entityIn.timeUntilPortal = entityIn.getPortalCooldown();
-
-					if(entityIn.dimension != VoidDimensionID){
-						if(!ForgeHooks.onTravelToDimension(entityIn, VoidDimensionID)) return;
-
-						int i = entityIn.dimension;
-
-						entityIn.dimension = VoidDimensionID;
-						worldIn.removeEntityDangerously(entityIn);
-
-						entityIn.isDead = false;
-
-						server.getPlayerList().transferEntityToWorld(entityIn, i, server.getWorld(i), server.getWorld(VoidDimensionID), new TeleporterVoid(server.getWorld(VoidDimensionID), this, Blocks.AIR.getDefaultState()));
-					} else {
-						if(!ForgeHooks.onTravelToDimension(entityIn, 0)) return;
-
-						entityIn.dimension = 0;
-						worldIn.removeEntityDangerously(entityIn);
-
-						entityIn.isDead = false;
-
-						server.getPlayerList().transferEntityToWorld(entityIn, VoidDimensionID, server.getWorld(VoidDimensionID), server.getWorld(0), new TeleporterVoid(server.getWorld(0), this, Blocks.AIR.getDefaultState()));
-					}
+					((TileEntityVoidRift)te).teleport(entityIn, dpos, DestDimID);
 				}
 			} else entityIn.timeUntilPortal = entityIn.getPortalCooldown();
 	}
@@ -177,4 +160,12 @@ public class VoidRift extends Block implements IRegisterModels {
   	 {
 		return BlockRenderLayer.TRANSLUCENT;
   	 }
+
+	@Override
+	public TileEntity createNewTileEntity(World worldIn, int meta) {
+		if (this.getRegistryName().getResourcePath().endsWith("5")) {
+			return new TileEntityVoidRift();
+		}
+		return null;
+	}
 }

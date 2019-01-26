@@ -81,7 +81,7 @@ public interface IDisplay {
 			nbt.setIntArray("pos", ar);
 			Ref.INSTANCE.sendToDimension(new ParticlePacket(nbt), te.getWorld().provider.getDimension());
 		} else {
-			((IDisplay)te).setParticle(state);
+			if (te != null)((IDisplay)te).setParticle(state);
 		}
 	}
 }

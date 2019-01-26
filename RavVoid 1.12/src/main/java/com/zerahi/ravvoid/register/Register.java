@@ -7,6 +7,7 @@ import com.zerahi.ravvoid.blocks.tileentity.TileEntityConduit;
 import com.zerahi.ravvoid.blocks.tileentity.TileEntityCrystallizer;
 import com.zerahi.ravvoid.blocks.tileentity.TileEntityPile;
 import com.zerahi.ravvoid.blocks.tileentity.TileEntityVoidNode;
+import com.zerahi.ravvoid.blocks.tileentity.TileEntityVoidRift;
 import com.zerahi.ravvoid.network.BookGuiPacket;
 import com.zerahi.ravvoid.network.ParticlePacket;
 import com.zerahi.ravvoid.utils.EventHandler;
@@ -68,13 +69,16 @@ public class Register {
 		GameRegistry.registerTileEntity(TileEntityConduit.class, Ref.MODID + ":" +  "tileentityconduit");
 		GameRegistry.registerTileEntity(TileEntityChaoticNode.class, Ref.MODID + ":" +  "tileentitychaoticnode");
 		GameRegistry.registerTileEntity(TileEntityVoidNode.class, Ref.MODID + ":" +  "tileentityvoidnode");
+		GameRegistry.registerTileEntity(TileEntityVoidRift.class, Ref.MODID + ":" +  "tileentityvoidrift");
 		DimensionRegistry.mainRegistry();
+		VoidBlocks.RegisterAltarList();
 		VoidEntities.registerEntities();
+		VoidItems.regCrysList();
 		MinecraftForge.EVENT_BUS.register(EventHandler.class);
 		Ref.INSTANCE.registerMessage(BookGuiPacket.Handler.class, BookGuiPacket.class, 0, Side.CLIENT);
 		Ref.INSTANCE.registerMessage(ParticlePacket.Handler.class, ParticlePacket.class, 1, Side.CLIENT);
 	}
-	
+
 	public static void Init() {
 		GameRegistry.registerWorldGenerator(new VoidWorldGenerator(), 0);
 		Triggers.init();

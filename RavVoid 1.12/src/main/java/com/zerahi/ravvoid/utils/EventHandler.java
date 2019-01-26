@@ -48,6 +48,8 @@ public class EventHandler {
 			event.getEntityPlayer().unlockRecipes(rec);
 		}else if (ItemStack.areItemsEqual(event.getItem().getItem(),new ItemStack(VoidItems.AWAKENEDVOIDORB))) {
 			Triggers.AWAKENEDVOIDORB.trigger((EntityPlayerMP) event.getEntityPlayer());
+		}else if (ItemStack.areItemsEqual(event.getItem().getItem(),new ItemStack(VoidItems.CHAOTICESSENCE))) {
+			Triggers.TOWER.trigger((EntityPlayerMP) event.getEntityPlayer());
 		}
 	 }
 	

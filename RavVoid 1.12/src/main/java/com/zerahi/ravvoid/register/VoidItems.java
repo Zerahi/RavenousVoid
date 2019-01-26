@@ -13,6 +13,8 @@ import com.zerahi.ravvoid.items.UnboundChaos;
 import com.zerahi.ravvoid.items.VoidArmor;
 import com.zerahi.ravvoid.items.VoidJournal;
 import com.zerahi.ravvoid.items.VoidShard;
+import com.zerahi.ravvoid.objects.CrystallizerPattern;
+import com.zerahi.ravvoid.objects.CrystallizerPattern.Binders;
 
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -23,6 +25,7 @@ import net.minecraftforge.common.util.EnumHelper;
 public class VoidItems {
 
 	public static final List<Item> ITEMS = new ArrayList<Item>();
+	public static final List<CrystallizerPattern> CRYSLIST = new ArrayList<CrystallizerPattern>();
 	
 	public static final Item VOIDSHARD = new VoidShard("voidshard");
 	public static final Item VOIDORB = new ItemGen("voidorb").setMaxStackSize(1);
@@ -37,7 +40,7 @@ public class VoidItems {
 	public static final Item VOIDJOURNAL = new VoidJournal("voidjournal");
 	public static final Item DEVOURERSCALES = new ItemGen("devourerscales");
 	public static final Item INFUSEDSCALES = new ItemGen("infusedscales");
-	public static final Item CHAOTICESSEMCE = new ItemGen("chaoticessence");
+	public static final Item CHAOTICESSENCE = new ItemGen("chaoticessence");
 	public static final Item CHAOTICHEART = new ItemGen("chaoticheart");
 	public static final Item RAVENOUSVOIDORB = new AwakenedVoidOrb("ravenousvoidorb", 2500);
 	
@@ -56,4 +59,12 @@ public class VoidItems {
 	public static final Item SCALESCHEST = new VoidArmor("scalechest", SCALE, 1, EntityEquipmentSlot.CHEST);
 	public static final Item SCALESLEGS = new VoidArmor("scalelegs", SCALE, 2, EntityEquipmentSlot.LEGS);
 	public static final Item SCALESFEET = new VoidArmor("scalefeet", SCALE, 1, EntityEquipmentSlot.FEET);
+	
+	public static void regCrysList() {
+		CRYSLIST.add(new CrystallizerPattern(VOIDSHARD, PUREVOIDSHARD, Binders.VoidEssence, SPIRIT));
+		CRYSLIST.add(new CrystallizerPattern(VOIDFRAGMENTS, VOIDSHARD, Binders.VoidEssence, SPIRIT));
+		CRYSLIST.add(new CrystallizerPattern(VOIDORB, AWAKENEDVOIDORB, Binders.VoidEssence, SPIRIT));
+		CRYSLIST.add(new CrystallizerPattern(AWAKENEDVOIDORB, RAVENOUSVOIDORB, Binders.ChaoticEssence, SPIRIT));
+		CRYSLIST.add(new CrystallizerPattern(PUREVOIDSHARD, CHAOTICHEART, Binders.ChaoticEssence, SPIRIT));
+	}
 }

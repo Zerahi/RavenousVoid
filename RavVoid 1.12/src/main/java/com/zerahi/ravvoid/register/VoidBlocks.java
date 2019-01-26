@@ -16,12 +16,21 @@ import com.zerahi.ravvoid.blocks.VoidOre;
 import com.zerahi.ravvoid.blocks.VoidRend;
 import com.zerahi.ravvoid.blocks.VoidRift;
 import com.zerahi.ravvoid.blocks.VoidTear;
+import com.zerahi.ravvoid.entity.mob.EntityShade;
+import com.zerahi.ravvoid.entity.mob.EntityVoidBeast;
+import com.zerahi.ravvoid.objects.AltarListItem;
+import com.zerahi.ravvoid.objects.VoidEntity;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.world.World;
 
 public class VoidBlocks {
 	public static final List<Block> BLOCKS = new ArrayList<Block>();
+	public static final List<AltarListItem> AltarList = new ArrayList<AltarListItem>();
 	
 	
 	
@@ -55,4 +64,23 @@ public class VoidBlocks {
 	public static final Block CHAOTICNODE = new ChaoticNode("chaoticnode", Material.ROCK);
 	public static final Block VOIDNODE = new VoidNode("voidnode", Material.ROCK);
 	public static final Block VOIDSTONE = new BlockGen("voidstone", Material.ROCK).setHardness(1.5F).setResistance(10.0F);
+	
+	public static void RegisterAltarList() {
+		AltarList.add(new AltarListItem(Items.ROTTEN_FLESH, EntityVoidBeast.class));
+		AltarList.add(new AltarListItem(Items.BONE, EntityShade.class));
+	}
+	
+	public static Entity CheckAltarList(Item display, World world) {
+		for(AltarListItem a:AltarList) {
+			if (a.Ingrediant == display) {
+				try {
+					for (VoidEntity e: VoidEntities.Mobs) {
+						if (a.Mob == e.MobClass) return e.NewMob(world);
+					}
+				} catch (IllegalArgumentException | SecurityException e) {
+				}
+				}
+			}
+		return null;
+	}
 }

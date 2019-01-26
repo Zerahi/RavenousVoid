@@ -2,7 +2,6 @@ package com.zerahi.ravvoid.blocks.tileentity;
 
 import java.util.Random;
 
-import com.zerahi.ravvoid.Ref;
 import com.zerahi.ravvoid.blocks.VoidRift;
 import com.zerahi.ravvoid.register.DimensionRegistry;
 import com.zerahi.ravvoid.register.Triggers;
@@ -285,7 +284,7 @@ public class TileEntityAltar extends TileEntity implements ITickable, IDisplay, 
 			} else {if (this.counter != 0) {this.counter = 0; IDisplay.particlesToggle(this, this.particalesActive =false, false);}}
 			
 			//Mob spawn
-			if(this.display !=null && Ref.altarListTier1(this.display, this.world) != null && this.world.getBlockState(this.pos.up()).getBlock() == Blocks.AIR && this.world.getBlockState(this.pos.add(0, 2, 0)).getBlock() == VoidBlocks.VOIDREND) {
+			if(this.display !=null && VoidBlocks.CheckAltarList(this.display.getItem(), this.world) != null && this.world.getBlockState(this.pos.up()).getBlock() == Blocks.AIR && this.world.getBlockState(this.pos.add(0, 2, 0)).getBlock() == VoidBlocks.VOIDREND) {
 					
 				if (this.mcounter < 200) {
 						this.mcounter++;
@@ -301,7 +300,7 @@ public class TileEntityAltar extends TileEntity implements ITickable, IDisplay, 
 			            if (ItemStack.areItemsEqual(this.display, new ItemStack(Items.BONE)))
 							if (!this.world.isRemote && this.world.getPlayerEntityByName(this.placer) != null) Triggers.SHADE.trigger((EntityPlayerMP) this.world.getPlayerEntityByName(this.placer));
 			            
-		                spawn = Ref.altarListTier1(this.display, this.world);
+		                spawn = VoidBlocks.CheckAltarList(this.display.getItem(), this.world);
 		                spawn.setWorld(this.world);
 		                
 		                EntityLiving entityliving = spawn instanceof EntityLiving ? (EntityLiving)spawn : null;

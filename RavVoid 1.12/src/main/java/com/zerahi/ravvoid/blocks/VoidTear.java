@@ -29,7 +29,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.DimensionManager;
 
 public class VoidTear extends Block implements IRegisterModels {
 
@@ -107,13 +106,11 @@ public class VoidTear extends Block implements IRegisterModels {
 				if(entityIn instanceof EntityPlayerMP){
 					EntityPlayerMP player = (EntityPlayerMP)entityIn;
 					if (!worldIn.isRemote) Triggers.TEAR.trigger(player);
-					//					thePlayer.addStat(ACAchievements.enter_abyssal_wasteland, 1);
-
 					player.timeUntilPortal = 30;
 					int shift;
 					if (worldIn.getBlockState(pos.down(1)).getBlock() == this) shift = 2; else shift = 1;
 					TileEntity te = worldIn.getTileEntity(pos.down(shift));
-					((TileEntityChaoticNode)te).teleport(entityIn, DimensionManager.getWorld(VoidDimensionID), VoidDimensionID);
+					((TileEntityChaoticNode)te).teleport(entityIn, VoidDimensionID);
 				}
 			} else entityIn.timeUntilPortal = entityIn.getPortalCooldown();
 	}

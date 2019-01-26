@@ -1,6 +1,5 @@
 package com.zerahi.ravvoid.blocks;
 
-import com.zerahi.ravvoid.Ref;
 import com.zerahi.ravvoid.VoidMod;
 import com.zerahi.ravvoid.blocks.tileentity.TileEntityAltar;
 import com.zerahi.ravvoid.register.Triggers;
@@ -81,9 +80,9 @@ public class VoidAltar extends Block implements ITileEntityProvider, IRegisterMo
     	TileEntityAltar te = (TileEntityAltar) worldIn.getTileEntity(pos);
     	ItemStack heldItem = playerIn.getHeldItemMainhand();
     	
-        if (te.display == null)
+        if (te.display == null && !worldIn.isRemote)
         {
-            if (Ref.altarListTier1(heldItem, worldIn) != null || ItemStack.areItemsEqual(heldItem, new ItemStack(VoidItems.VOIDORB)) ||
+            if (VoidBlocks.CheckAltarList(heldItem.getItem(), worldIn) != null || ItemStack.areItemsEqual(heldItem, new ItemStack(VoidItems.VOIDORB)) ||
             		ItemStack.areItemsEqual(new ItemStack(heldItem.getItem()), new ItemStack(VoidItems.AWAKENEDVOIDORB))) {
             	te.setDisplay(heldItem.copy());
             	te.getDisplay().setCount(1);

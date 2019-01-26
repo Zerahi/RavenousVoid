@@ -39,11 +39,7 @@ public class BookGui extends GuiScreen {
 	int btnIDtable = 3;
 	
 	@Override
-	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-		//TODO mouseX and Y can be used for Tooltips, mouse position based rendering
-		//TODO also could render an outline box if user hovers over a button, changed box color on click?
-		//TODO display GUI as null closes on item
-		
+	public void drawScreen(int mouseX, int mouseY, float partialTicks) {		
 
 		this.fontRenderer = new FontRenderer(mc.gameSettings, font, mc.getTextureManager(), true);
 		mc.renderEngine.bindTexture(texture);

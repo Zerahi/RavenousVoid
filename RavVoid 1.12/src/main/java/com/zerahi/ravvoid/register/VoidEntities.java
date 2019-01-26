@@ -1,45 +1,52 @@
 package com.zerahi.ravvoid.register;
 
-import com.zerahi.ravvoid.Ref;
-import com.zerahi.ravvoid.VoidMod;
+import java.util.ArrayList;
+
 import com.zerahi.ravvoid.entity.mob.EntityDevourer;
 import com.zerahi.ravvoid.entity.mob.EntityForgedChaos;
 import com.zerahi.ravvoid.entity.mob.EntityShade;
 import com.zerahi.ravvoid.entity.mob.EntityVoidBeast;
+import com.zerahi.ravvoid.entity.mob.render.RenderDevourer;
+import com.zerahi.ravvoid.entity.mob.render.RenderForgedChaos;
+import com.zerahi.ravvoid.entity.mob.render.RenderShade;
+import com.zerahi.ravvoid.entity.mob.render.RenderVoidBeast;
+import com.zerahi.ravvoid.objects.VoidEntity;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraftforge.fml.client.registry.IRenderFactory;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 public class VoidEntities {
+	public static ArrayList<VoidEntity> Mobs = new ArrayList<VoidEntity>();
 	
 	public static void registerEntities() {
-		registerEntity("voidbeast",EntityVoidBeast.class, 1, 64, 1966634, 4456962);
-		registerEntity("shade", EntityShade.class, 2, 64, 460551, 4456962);
-		registerEntity("forgedchaos", EntityForgedChaos.class, 3, 64, 10682368, 524288);
-		registerEntity("devourer", EntityDevourer.class, 4, 64, 2171169, 131072);
+		
+		int index = 0;
+		Mobs.add(new VoidEntity("voidbeast", EntityVoidBeast.class, RenderVoidBeast.class, index, 1966634, 4456962)); index++;
+		Mobs.add(new VoidEntity("shade", EntityShade.class, RenderShade.class, index, 460551, 4456962)); index++;
+		Mobs.add(new VoidEntity("forgedchaos", EntityForgedChaos.class, RenderForgedChaos.class, index, 10682368, 524288)); index++;
+		Mobs.add(new VoidEntity("devourer", EntityDevourer.class, RenderDevourer.class, index, 2171169, 131072)); index++;
 	}
 
-	private static void registerEntity(String entityName, Class<? extends Entity>entity, int id, int trackingRange, int solidColor, int spotColor) {
-				EntityRegistry.registerModEntity(new ResourceLocation(Ref.MODID + ":" + entityName), entity, entityName, id,
-				VoidMod.instance, trackingRange, 1, true, solidColor, spotColor);
-	}
-	
-	public static Entity spawnList(int num, World world) {
-		if (num == 0) return new EntityVoidBeast(world);
-		else if (num == 1) return new EntityShade(world);
-		else if (num == 2) return new EntityForgedChaos(world);
-		else if (num == 3) return new EntityDevourer(world);
-		else return null;
+	public static VoidEntity MobByName(String name) {
+		for (VoidEntity v : Mobs) {			
+			if (v.Name == name) return v; 
+		}
+		return null;
 	}
 
-	@SuppressWarnings("rawtypes")
-	public static Class getList(int num) {
-		if (num == 0) return EntityVoidBeast.class;
-		else if (num == 1) return EntityShade.class;
-		else if (num == 2) return EntityForgedChaos.class;
-		else if (num == 3) return EntityDevourer.class;
-		else return null;
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public static void RegisterRenders() {
+			for (VoidEntity v : Mobs) {
+				RenderingRegistry.registerEntityRenderingHandler(v.MobClass, new IRenderFactory() 
+				{
+					@Override
+					public Render createRenderFor(RenderManager manager) 
+					{
+						return v.GetRenderer(manager);
+					}
+				});
+			}
 	}
 }

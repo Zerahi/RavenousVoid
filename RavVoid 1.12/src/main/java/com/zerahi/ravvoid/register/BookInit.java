@@ -48,6 +48,9 @@ public class BookInit {
 		Entrys.add(new BookEntry("Void Rift", 15, false, "Sight", VoidItems.PUREVOIDSHARD, "voidrift", true, false));
 		Entrys.add(new BookEntry("Through the Rift", 16, false, "Sight", Item.getItemFromBlock(VoidBlocks.ASH), "through", true, false));
 		Entrys.add(new BookEntry("Instability", 17, false, "Sight", Item.getItemFromBlock(VoidBlocks.CHAOTICNODE), "tear", true, false));
+		Entrys.add(new BookEntry("Tower", 18, false, "Sight", Item.getItemFromBlock(VoidBlocks.CONTAINEDENTROPY), "tower", true, false));
+		
+		//after this page make advancement json, then add trigger either to item or EventHandler.
 		
 		addText();
 		//Text and items for entries
@@ -170,6 +173,9 @@ public class BookInit {
 		case 17: entry.Item[4] = Item.getItemFromBlock(VoidBlocks.CHAOTICNODE);
 		entry.itemText = "Pass through a void tear.";
 		break;
+		case 18: entry.Item[4] = VoidItems.CHAOTICESSENCE;
+		entry.itemText = "Return to the void ready to battle.";
+		break;
 		default: break;
 		}
 	}
@@ -265,12 +271,17 @@ public class BookInit {
 				+ " end up and how safe it may be. I should only bring items that are essential it may be hard to return to them if the worst "
 				+ "happens.");
 		//17
-		Text.add("I stumble as I pass through the rift, the darkness fells like a pressure surrounding me pressing in from all sides. Like a "
+		Text.add("I stumble as I pass through the rift, the darkness fells pressing in from all sides. Like a "
 				+ "film along the surface of it I can sense a chaotic energy, it seems to be holding back the void somehow. I need to "
 				+ "investigate further. The ground around me is covered in ash and the stone itself seems infused with the chaotic energy. "
-				+ "I can see several void creatures I should be prepared for a fight. My first objective should be to find one of the weak "
-				+ "spots to I can be sure I can return safely. I see small structures with what feels like stabilized tears hovering over them. "
+				+ "I can see several void creatures I should be prepared for a fight. My first objective should be to find one of one the weak "
+				+ "spots so I can be sure I can return safely. I see small structures with what feels like stabilized tears hovering over them. "
 				+ "I should find one and try to pass through.");
+		//18
+		Text.add("It appears that my theory was correct the tears act as places to fall back into my home realm. They have strange structures "
+				+ "under them used to hold them open wide enough to pass through but preventing them from opening wider. I need to find answers"
+				+ " I need to master the void and chaotic powers and it seems I am not the first to follow this path. I should explore some of "
+				+ "the small towers nearby to see if I can gain anything from them. Before I return to the void I need to make sure I'm ready to fight.");
 	}
 	
 	public static void checkAdvancements(EntityPlayerMP player) {

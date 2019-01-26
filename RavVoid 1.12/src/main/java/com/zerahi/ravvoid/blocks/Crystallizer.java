@@ -124,8 +124,8 @@ public class Crystallizer extends Block implements ITileEntityProvider, IRegiste
 	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity ent) {
 
 		TileEntityCrystallizer tile = (TileEntityCrystallizer) world.getTileEntity(pos);
-		if(ent instanceof EntityItem && !tile.active && ((Integer) world.getBlockState(pos).getValue(liquid)).intValue() > 0) {
-			tile.crystalyzerList((EntityItem) ent);
+		if(ent instanceof EntityItem && tile.getDisplay() == null && !world.isRemote && ((Integer) world.getBlockState(pos).getValue(liquid)).intValue() > 0) {
+			tile.newItem((EntityItem) ent);
 		}
 	}
     

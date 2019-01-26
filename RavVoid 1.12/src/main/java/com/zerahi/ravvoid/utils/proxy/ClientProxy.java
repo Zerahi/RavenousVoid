@@ -8,6 +8,7 @@ import com.zerahi.ravvoid.entity.mob.EntityShade;
 import com.zerahi.ravvoid.entity.mob.EntityVoidBeast;
 import com.zerahi.ravvoid.entity.projectile.EntityChaosBolt;
 import com.zerahi.ravvoid.register.RegisterEntityRenders;
+import com.zerahi.ravvoid.register.VoidEntities;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -35,10 +36,7 @@ public class ClientProxy extends CommonProxy{
 				return new RenderChaosBolt(manager, 1);
 			}
 		});
-		RegisterEntityRenders.registerShade(EntityShade.class);
-		RegisterEntityRenders.registerBeast(EntityVoidBeast.class);
-		RegisterEntityRenders.registerForged(EntityForgedChaos.class);
-		RegisterEntityRenders.registerDevourer(EntityDevourer.class);		
+		VoidEntities.RegisterRenders();
 	}
 	
 	@Override

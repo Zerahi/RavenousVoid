@@ -75,10 +75,10 @@ public class TileEntityVoidNode extends TileEntity implements ITickable, IUpdate
 			
 
 			public void shiftSpawned(EntityPlayer playerIn) {
-				Entity ent = VoidEntities.spawnList(this.spawned +1, this.world);
+				Entity ent = VoidEntities.Mobs.get(this.spawned).NewMob(this.world);
 				if (ent == null) {
 					this.spawned = 0;
-					ent = VoidEntities.spawnList(this.spawned, this.world);
+					ent = VoidEntities.Mobs.get(this.spawned).NewMob(this.world);;
 				} else this.spawned++;
 				if(!this.world.isRemote) playerIn.sendMessage(new TextComponentString(String.valueOf(this.spawned) + " " + ent.getName()));
 				this.change();
@@ -97,7 +97,7 @@ public class TileEntityVoidNode extends TileEntity implements ITickable, IUpdate
 					if (this.delay >= 500 && this.spawned > -1) {		
 						if(nearby(10) == true && !this.world.isRemote && 
 								this.world.getClosestPlayer(this.pos.getX(), this.pos.getY(), this.pos.getZ(), 30, false) != null) {
-				            Entity spawn = VoidEntities.spawnList(this.spawned, this.world);
+				            Entity spawn = VoidEntities.Mobs.get(this.spawned).NewMob(this.world);
 			                if (spawn != null) {
 								spawn.setWorld(this.world);
 								EntityLiving entityliving = spawn instanceof EntityLiving ? (EntityLiving) spawn
@@ -117,7 +117,7 @@ public class TileEntityVoidNode extends TileEntity implements ITickable, IUpdate
 					if (this.delay >= 1000 && this.spawned > -1 ) {
  						if (this.boss == false) {
 							if(nearby(30) && !this.world.isRemote) {
-					            this.bossEnt = VoidEntities.spawnList(this.spawned, this.world);
+					            this.bossEnt = VoidEntities.Mobs.get(this.spawned).NewMob(this.world);
 				                if (this.bossEnt != null) {
 									this.bossEnt.setWorld(this.world);
 									EntityLiving entityliving = this.bossEnt instanceof EntityLiving ? (EntityLiving) this.bossEnt
@@ -167,11 +167,11 @@ public class TileEntityVoidNode extends TileEntity implements ITickable, IUpdate
 			private boolean nearby(int range) {
 				AxisAlignedBB dist = new AxisAlignedBB(pos.getX() - range,pos.getY() - range,pos.getZ() - range,pos.getX() + range,pos.getY() + range,pos.getZ() + range);
 				if (mode == 0) {
-					if (world.getEntitiesWithinAABB(VoidEntities.getList(this.spawned), dist).size() <4) {
+					if (world.getEntitiesWithinAABB(VoidEntities.Mobs.get(this.spawned).MobClass, dist).size() <4) {
 						return true;
 					}
 				} else if (mode == 1) {
- 					if (world.getEntitiesWithinAABB(VoidEntities.getList(this.spawned), dist).size() == 0) {
+ 					if (world.getEntitiesWithinAABB(VoidEntities.Mobs.get(this.spawned).MobClass, dist).size() == 0) {
 						return true;
 					}
 				}
